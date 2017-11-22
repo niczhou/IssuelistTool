@@ -149,7 +149,7 @@ Begin VB.Form Form1
       Top             =   120
       Width           =   1695
       Begin VB.OptionButton Option7 
-         Caption         =   "Option7"
+         Caption         =   "更新清单链接"
          Height          =   375
          Left            =   120
          TabIndex        =   22
@@ -157,12 +157,12 @@ Begin VB.Form Form1
          Width           =   1215
       End
       Begin VB.OptionButton Option6 
-         Caption         =   "Option6"
+         Caption         =   "导入问题清单"
          Height          =   375
          Left            =   120
          TabIndex        =   21
          Top             =   840
-         Width           =   1215
+         Width           =   1455
       End
       Begin VB.OptionButton Option5 
          Caption         =   "创建新问题"
@@ -211,7 +211,49 @@ Dim xlApp As Excel.Application
 Private Sub Command1_Click()
     startTo (btnID)
 End Sub
+Private Sub Option1_Click()
+    Option2 = False
+End Sub
+Private Sub Option2_Click()
+    Option1 = False
+End Sub
+Private Sub Option5_Click()
+    initTask ("CREATE")
+End Sub
 
+Private Sub Option6_Click()
+    btnID = "IMPORT"
+End Sub
+
+Private Sub Option7_Click()
+    initTask ("UPDATE")
+End Sub
+
+Private Sub Text1_Change()
+    Option2 = True
+End Sub
+Private Sub Form_Initialize()
+'
+End Sub
+Private Sub initTask(taskName As Variant)
+    Dim xUtil As New XlUtil
+    
+    btnID = taskName
+    
+    Set xlApp = xUtil.getXlApp
+    Call xUtil.initComboBox(xlApp, Combo1)
+    
+    Select Case taskName
+        Case "CREATE"
+            Frame5.Enabled = False
+        Case "IMPORT"
+        
+        Case "UPDATE"
+            Frame5.Enabled = False
+    End Select
+    
+    Set xUtil = Nothing
+End Sub
 Private Sub startTo(strID As String)
     Dim xUtil As New XlUtil
  
@@ -229,40 +271,6 @@ Private Sub startTo(strID As String)
     End Select
     
     Set xUtil = Nothing
-End Sub
-
-Private Sub Option1_Click()
-    Option2 = False
-End Sub
-
-Private Sub Option2_Click()
-    Option1 = False
-End Sub
-
-Private Sub Option5_Click()
-    Dim xUtil As New XlUtil
-    
-    btnID = "CREATE"
-    Frame5.Enabled = False
-    Set xlApp = xUtil.getXlApp
-    Call xUtil.initComboBox(xlApp, Combo1)
-    
-    Set xUtil = Nothing
-End Sub
-
-Private Sub Option6_Click()
-    btnID = "IMPORT"
-End Sub
-
-Private Sub Option7_Click()
-    btnID = "UPDATE"
-End Sub
-
-Private Sub Text1_Change()
-    Option2 = True
-End Sub
-Private Sub Form_Initialize()
-'
 End Sub
 Private Sub create()
     Dim xUtil As New XlUtil
