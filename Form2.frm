@@ -114,7 +114,15 @@ Private Sub Command2_Click()
     Unload Me
     Form1.Show 0
 End Sub
+Private Sub Option1_Click()
+    Option2 = False
+End Sub
 
-'Private Function addNewSheet(xlBook As Workbook, afterSheetNum) As Worksheet
-'    Set addNewSheet = xlBook.Sheets.Add(after:=Sheets(afterSheetNum))
-'End Function
+Private Sub Option2_Click()
+    Option1 = False
+End Sub
+
+Private Sub Text1_Change()
+    Option1 = False
+    Option2 = True
+End Sub

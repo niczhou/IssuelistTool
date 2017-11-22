@@ -9,6 +9,7 @@ Class=XlUtil; input\XlUtil.cls
 Form=Form3.frm
 Class=Creater; Creater.cls
 Form=Form4.frm
+Class=Importer; Importer.cls
 Startup="Form1"
 ExeName32="¹¤³Ì1.exe"
 Command32=""
