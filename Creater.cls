@@ -13,10 +13,16 @@ Attribute VB_PredeclaredId = False
 Attribute VB_Exposed = False
 Option Explicit
 
+Dim newSheet As Worksheet
+Public Sub addNewSheet(xlBook As Workbook, SheetNum As Variant)
 
-Public Sub formatNewSheet(xlSheet As Worksheet)
+    Set newSheet = xlBook.Sheets.Add(after:=xlBook.Sheets(SheetNum))
 
-    With xlSheet
+End Sub
+
+Public Sub formatNewSheet()
+
+    With newSheet
     
         With .Range(.Cells(1, 1), .Cells(11, 6))
     
