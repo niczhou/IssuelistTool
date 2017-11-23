@@ -1,16 +1,17 @@
 VERSION 5.00
 Begin VB.Form Form1 
    Caption         =   "问题清单工具"
-   ClientHeight    =   4605
+   ClientHeight    =   8085
    ClientLeft      =   120
    ClientTop       =   450
-   ClientWidth     =   7545
+   ClientWidth     =   8145
    LinkTopic       =   "Form1"
-   ScaleHeight     =   4605
-   ScaleWidth      =   7545
+   ScaleHeight     =   8085
+   ScaleWidth      =   8145
    StartUpPosition =   3  '窗口缺省
-   Begin VB.Frame Frame5 
+   Begin VB.Frame Frame2 
       Height          =   2055
+      Index           =   1
       Left            =   2280
       TabIndex        =   12
       Top             =   2280
@@ -22,36 +23,29 @@ Begin VB.Form Form1
          TabIndex        =   15
          Top             =   1080
          Width           =   4695
-         Begin VB.TextBox Text2 
+         Begin VB.OptionButton Option10 
+            Caption         =   "更新汇总清单"
             Height          =   375
-            Left            =   2640
-            TabIndex        =   18
-            Top             =   240
-            Width           =   615
-         End
-         Begin VB.OptionButton Option3 
-            Caption         =   "在"
-            Height          =   375
-            Left            =   2160
-            TabIndex        =   17
-            Top             =   240
-            Width           =   495
-         End
-         Begin VB.OptionButton Option4 
-            Caption         =   "在最后；"
-            Height          =   375
-            Left            =   120
-            TabIndex        =   16
+            Left            =   3120
+            TabIndex        =   21
             Top             =   240
             Width           =   1455
          End
-         Begin VB.Label Label2 
-            Caption         =   "之后；"
-            Height          =   255
-            Left            =   3240
-            TabIndex        =   19
-            Top             =   360
-            Width           =   735
+         Begin VB.OptionButton Option3 
+            Caption         =   "仅更新标签"
+            Height          =   375
+            Left            =   120
+            TabIndex        =   17
+            Top             =   240
+            Width           =   1455
+         End
+         Begin VB.OptionButton Option4 
+            Caption         =   "更新清单链接"
+            Height          =   375
+            Left            =   1560
+            TabIndex        =   16
+            Top             =   240
+            Width           =   1455
          End
       End
       Begin VB.Frame Frame7 
@@ -73,6 +67,7 @@ Begin VB.Form Form1
    End
    Begin VB.Frame Frame2 
       Height          =   2055
+      Index           =   0
       Left            =   2280
       TabIndex        =   4
       Top             =   120
@@ -100,7 +95,7 @@ Begin VB.Form Form1
             Width           =   495
          End
          Begin VB.OptionButton Option1 
-            Caption         =   "在最后；"
+            Caption         =   "在最后"
             Height          =   375
             Left            =   120
             TabIndex        =   8
@@ -108,7 +103,7 @@ Begin VB.Form Form1
             Width           =   1455
          End
          Begin VB.Label Label1 
-            Caption         =   "之后；"
+            Caption         =   "之后"
             Height          =   255
             Left            =   3240
             TabIndex        =   11
@@ -152,7 +147,7 @@ Begin VB.Form Form1
          Caption         =   "更新清单链接"
          Height          =   375
          Left            =   120
-         TabIndex        =   22
+         TabIndex        =   20
          Top             =   1560
          Width           =   1215
       End
@@ -160,7 +155,7 @@ Begin VB.Form Form1
          Caption         =   "导入问题清单"
          Height          =   375
          Left            =   120
-         TabIndex        =   21
+         TabIndex        =   19
          Top             =   840
          Width           =   1455
       End
@@ -168,7 +163,7 @@ Begin VB.Form Form1
          Caption         =   "创建新问题"
          Height          =   375
          Left            =   120
-         TabIndex        =   20
+         TabIndex        =   18
          Top             =   360
          Width           =   1335
       End
@@ -207,9 +202,15 @@ Option Explicit
 
 Dim btnID As Variant
 Dim xlApp As Excel.Application
-
+Dim frameList(2) As msforms.Control
+Private Sub Form_Initialize()
+'    frameList = Array(Frame2, Frame5)
+End Sub
+Private Sub Form_Load()
+'    Debug.Print Frame2.Name
+End Sub
 Private Sub Command1_Click()
-    startTo (btnID)
+    handleTask (btnID)
 End Sub
 Private Sub Option1_Click()
     Option2 = False
@@ -232,32 +233,41 @@ End Sub
 Private Sub Text1_Change()
     Option2 = True
 End Sub
-Private Sub Form_Initialize()
-'
-End Sub
 Private Sub initTask(taskName As Variant)
-    Dim xUtil As New XlUtil
+    Dim mUtil As New XlUtil
     
     btnID = taskName
     
-    Set xlApp = xUtil.getXlApp
-    Call xUtil.initComboBox(xlApp, Combo1)
+    Set xlApp = mUtil.getXlApp
     
     Select Case taskName
         Case "CREATE"
-            Frame5.Enabled = False
+            Call toggleFrame(0)
+            Call mUtil.initComboBox(xlApp, Combo1)
         Case "IMPORT"
         
         Case "UPDATE"
-            Frame5.Enabled = False
+            Call toggleFrame(1)
+            Call mUtil.initComboBox(xlApp, Combo2)
+            
     End Select
     
-    Set xUtil = Nothing
+    Set mUtil = Nothing
 End Sub
-Private Sub startTo(strID As String)
-    Dim xUtil As New XlUtil
- 
-    btnID = strID
+Private Sub toggleFrame(showIndex As Integer)
+    Dim f As Frame
+    For Each f In Frame2
+        f.Visible = False
+    Next
+    Frame2(showIndex).Visible = True
+   
+End Sub
+
+Private Sub handleTask(strID As Variant)
+    Dim mUtil As New XlUtil
+    
+    Me.Hide
+    xlApp.Visible = True
     
     Select Case strID
         Case "CREATE"
@@ -267,24 +277,48 @@ Private Sub startTo(strID As String)
         Case "IMPORT"
 
         Case "UPDATE"
-
+            Call update
+            
     End Select
     
-    Set xUtil = Nothing
+    Me.Show 0
+    Set mUtil = Nothing
 End Sub
 Private Sub create()
-    Dim xUtil As New XlUtil
+    Dim mUtil As New XlUtil
     Dim xCreater As New Creater
-    Dim xBook As Workbook
+    Dim mBook As Workbook
     Dim sNum
     
-    Set xBook = xUtil.getBook(xlApp, Combo1.Text)
+    Set mBook = mUtil.getBook(xlApp, Combo1.Text)
     If Text1.Text <> "" Then
         sNum = CInt(Text1.Text)
     Else
-        sNum = xBook.Worksheets.Count
+        sNum = mBook.Worksheets.Count
     End If
     
-    Call xCreater.addNewSheet(xBook, sNum)
+    Call xCreater.addNewSheet(mBook, sNum)
     Call xCreater.formatNewSheet
+End Sub
+Private Sub update()
+    Dim mUtil As New XlUtil
+    Dim xUpdater As New Updater
+    Dim mBook As Workbook
+    Dim sNum, listNum, firstNum
+    
+    Set mBook = mUtil.getBook(xlApp, Combo2.Text)
+    Debug.Print mBook.Name
+    listNum = mUtil.getListSheetNum(mBook)
+    firstNum = mUtil.getFirstSheetNum(mBook)
+    
+    If Option3 = True Then
+        Call xUpdater.updateTabs(mBook)
+    End If
+    
+    If Option3 = True Then
+        Call xUpdater.updateLinks(mBook)
+    End If
+    
+    Set mUtil = Nothing
+    Set mupdater = Nothing
 End Sub

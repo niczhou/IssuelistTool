@@ -14,9 +14,9 @@ Attribute VB_Exposed = False
 Option Explicit
 
 Dim newSheet As Worksheet
-Public Sub addNewSheet(xlBook As Workbook, SheetNum As Variant)
+Public Sub addNewSheet(wBook As Workbook, SheetNum As Variant)
 
-    Set newSheet = xlBook.Sheets.Add(after:=xlBook.Sheets(SheetNum))
+    Set newSheet = wBook.Sheets.Add(after:=wBook.Sheets(SheetNum))
 
 End Sub
 
@@ -222,8 +222,6 @@ Public Sub formatNewSheet()
             .ShowError = True
         End With
     
-    
-        .Cells(3, 2).Select
     End With
 End Sub
 
