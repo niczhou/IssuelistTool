@@ -208,6 +208,8 @@ Private Sub Form_Initialize()
 End Sub
 Private Sub Form_Load()
 '    Debug.Print Frame2.Name
+    Option7 = True
+    Option4 = True
 End Sub
 Private Sub Command1_Click()
     handleTask (btnID)
@@ -271,20 +273,19 @@ Private Sub handleTask(strID As Variant)
     
     Select Case strID
         Case "CREATE"
-            Debug.Print "start to create"
-            Call create
+            Call createTask
             
         Case "IMPORT"
 
         Case "UPDATE"
-            Call update
+            Call updateTask
             
     End Select
     
     Me.Show 0
     Set mUtil = Nothing
 End Sub
-Private Sub create()
+Private Sub createTask()
     Dim mUtil As New XlUtil
     Dim xCreater As New Creater
     Dim mBook As Workbook
@@ -300,25 +301,22 @@ Private Sub create()
     Call xCreater.addNewSheet(mBook, sNum)
     Call xCreater.formatNewSheet
 End Sub
-Private Sub update()
+Private Sub updateTask()
     Dim mUtil As New XlUtil
-    Dim xUpdater As New Updater
+    Dim mUpdater As New Updater
     Dim mBook As Workbook
-    Dim sNum, listNum, firstNum
     
     Set mBook = mUtil.getBook(xlApp, Combo2.Text)
     Debug.Print mBook.Name
-    listNum = mUtil.getListSheetNum(mBook)
-    firstNum = mUtil.getFirstSheetNum(mBook)
     
     If Option3 = True Then
-        Call xUpdater.updateTabs(mBook)
+        Call mUpdater.updateTabs(mBook)
     End If
     
-    If Option3 = True Then
-        Call xUpdater.updateLinks(mBook)
+    If Option4 = True Then
+        Call mUpdater.updateLinks(mBook)
     End If
     
     Set mUtil = Nothing
-    Set mupdater = Nothing
+    Set mUpdater = Nothing
 End Sub

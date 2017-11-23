@@ -28,13 +28,25 @@ Public Sub updateTabs(wBook As Workbook)
 End Sub
 Public Sub updateLinks(wBook As Workbook)
     Dim mUtil As New XlUtil
-    Dim firstNum, i
+    Dim listNum, firstNum, sheetIndex
+    Dim listName, preName, nextName
+    Dim i, j, cIndex
     
-    Debug.Print "update tabs"
+    Debug.Print "update das "
+    listNum = mUtil.getListSheetNum(wBook)
     firstNum = mUtil.getFirstSheetNum(wBook)
+    listName = wBook.Sheets(listNum).Name
+    Debug.Print listNum & "?" & firstNum
+    
     With wBook
-        For i = firstNum To .Sheets.Count
-            Call updateSheetLink(.Sheets(i), wBook)
+        For i = .Sheets.Count To firstNum Step -1
+            Call updateSheetName(.Sheets(i))
+        Next
+    
+        For j = firstNum To .Sheets.Count - 1
+            'cIndex
+            cIndex = j - firstNum + 1
+            Call updateSheetLink(.Sheets(j), cIndex, listName, .Sheets(j - 1).Name, .Sheets(j + 1).Name)
         Next
     End With
     
@@ -44,33 +56,14 @@ Public Sub updateList()
 
 End Sub
 
-Public Sub updateTabColor(wSheet As Worksheet)
 
-    With wSheet
-        Select Case .Cells(3, 5).Value          '根据问题状态更新sheet标签颜色
-             Case "绿":  .Tab.Color = 5287936
-             Case "红":  .Tab.Color = 255
-             Case "黄":  .Tab.Color = 65535
-             Case Else:  .Tab.ColorIndex = xlNone: .Tab.TintAndShade = 0
-        End Select
-    End With
-End Sub
-
-Public Sub updateSheetLink(wSheet As Worksheet, wBook As Workbook)
+Public Sub updateSheetLink(wSheet As Worksheet, CurrentIndex As Variant, listSheetName As Variant, preSheetName As Variant, nextSheetName As Variant)
     Dim mUtil As New XlUtil
-    Dim listNum, firstNum, sheetIndex
-    Dim listName, preName, nextName
-    
-    firstNum = mUtil.getFirstSheetNum(wBook)
-    listNum = mUtil.getListSheetNum(wBook)
-    listName = wBook.Sheets(listNum).Name
-    sheetIndex = mUtil.getSheetIndex(wSheet, wBook)
-    preName = wBook.Sheets(sheetIndex - 1).Name
-    nextName = wBook.Sheets(sheetIndex + 1).Name
-    
     
     With wSheet
-        .Name = "(" & (sheetIndex - firstNum + 1) & ")"
+        .Cells.Hyperlinks.Delete
+        
+        .Name = "(" & CurrentIndex & ")"
             
          Select Case .Cells(3, 5).Value          '根据问题状态更新sheet标签颜色
              Case "绿":  .Tab.Color = 5287936
@@ -80,8 +73,8 @@ Public Sub updateSheetLink(wSheet As Worksheet, wBook As Workbook)
         End Select
         
          With .Cells(1, 1)       '返回首页
-             .Hyperlinks.Delete
-             .Hyperlinks.Add Anchor:=.Cells(1, 1), Address:="", SubAddress:="'" & listName & "'!A" & (sheetIndex - firstNum + listNum + 1), _
+'             .Hyperlinks.Delete
+             .Hyperlinks.Add Anchor:=.Cells(1, 1), Address:="", SubAddress:="'" & listSheetName & "'!A" & (CurrentIndex + 2), _
                  TextToDisplay:="问题报告", ScreenTip:="单击返回首页"
              .HorizontalAlignment = xlCenter
              .VerticalAlignment = xlCenter
@@ -92,31 +85,50 @@ Public Sub updateSheetLink(wSheet As Worksheet, wBook As Workbook)
 '                .Font.Underline = xlUnderlineStyleNone
          End With
 
-         With .Cells(3, 1)         '上一页
-             .Value = sheetIndex - firstNum + 1
-             .Hyperlinks.Delete
-             .Hyperlinks.Add Anchor:=.Cells(3, 1), Address:="", SubAddress:="'" & preName & "'!A3", _
+         With .Cells(2, 1)         '上一页
+             .Value = "序号"
+'             .Hyperlinks.Delete
+             .Hyperlinks.Add Anchor:=.Cells(1, 1), Address:="", SubAddress:="'" & preSheetName & "'!A2", _
                  ScreenTip:="单击跳转上一页"
              .HorizontalAlignment = xlCenter
              .VerticalAlignment = xlCenter
              .NumberFormatLocal = "G/通用格式"
-'                .Font.ThemeColor = xlThemeColorLight1
+                .Font.ThemeColor = xlThemeColorLight1
              .Font.Size = 11
              .Font.Bold = False
          End With
         
-         If sheetIndex < wBook.Sheets.Count Then
-                 With .Cells(3, 3)       '下一页
+'         If CurrentIndex < wBook.Sheets.Count Then
+                 With .Cells(2, 3)       '下一页
+                     .Value = "问题序号"
                      .Hyperlinks.Delete
-                     .Hyperlinks.Add Anchor:=Sheets(i).Cells(3, 3), Address:="", SubAddress:="'" & nextName & "'!C3", _
+                     .Hyperlinks.Add Anchor:=.Cells(1, 1), Address:="", SubAddress:="'" & nextSheetName & "'!C2", _
                          ScreenTip:="单击跳转下一页"
                      .HorizontalAlignment = xlCenter
                      .VerticalAlignment = xlCenter
                      .NumberFormatLocal = "G/通用格式"
-'                        .Font.ThemeColor = xlThemeColorLight1
+                        .Font.ThemeColor = xlThemeColorLight1
                      .Font.Size = 11
                      .Font.Bold = False
                  End With
-         End If
+'         End If
+    End With
+End Sub
+Public Sub updateSheetName(wSheet As Worksheet)
+    Dim mUtil As New XlUtil
+    With wSheet
+        .Name = mUtil.hashCode(.CodeName & .Name)
+    End With
+    Set mUtil = Nothing
+End Sub
+Public Sub updateTabColor(wSheet As Worksheet)
+
+    With wSheet
+        Select Case .Cells(3, 5).Value          '根据问题状态更新sheet标签颜色
+             Case "绿":  .Tab.Color = 5287936
+             Case "红":  .Tab.Color = 255
+             Case "黄":  .Tab.Color = 65535
+             Case Else:  .Tab.ColorIndex = xlNone: .Tab.TintAndShade = 0
+        End Select
     End With
 End Sub
