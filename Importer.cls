@@ -14,12 +14,9 @@ Attribute VB_Exposed = False
 Public Sub importBook(fromBook As Workbook, toBook As Workbook, startNum As Variant, endNum As Variant, afterNum As Variant)
     Dim i
        
-    Application.DisplayAlerts = False
-       
     For i = endNum To startNum Step -1
             fromBook.Sheets(i).Copy after:=toBook.Sheets(afterNum)
     Next
-    
-    Application.DisplayAlerts = True
+
 End Sub
 

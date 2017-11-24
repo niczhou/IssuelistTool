@@ -1,21 +1,110 @@
 VERSION 5.00
 Begin VB.Form Form1 
    Caption         =   "问题清单工具"
-   ClientHeight    =   5685
+   ClientHeight    =   8850
    ClientLeft      =   120
    ClientTop       =   450
-   ClientWidth     =   8310
+   ClientWidth     =   8610
    LinkTopic       =   "Form1"
-   ScaleHeight     =   5685
-   ScaleWidth      =   8310
+   ScaleHeight     =   8850
+   ScaleWidth      =   8610
    StartUpPosition =   3  '窗口缺省
+   Begin VB.Frame Frame2 
+      Caption         =   "批量删除"
+      Height          =   3555
+      Index           =   3
+      Left            =   120
+      TabIndex        =   41
+      Top             =   1080
+      Width           =   7080
+      Begin VB.Frame Frame14 
+         Caption         =   "选择文件"
+         Height          =   735
+         Left            =   120
+         TabIndex        =   49
+         Top             =   480
+         Width           =   6855
+         Begin VB.ComboBox Combo6 
+            Height          =   300
+            Left            =   120
+            Style           =   2  'Dropdown List
+            TabIndex        =   50
+            Top             =   240
+            Width           =   4455
+         End
+      End
+      Begin VB.Frame Frame11 
+         Caption         =   "删除的范围"
+         Height          =   735
+         Left            =   120
+         TabIndex        =   42
+         Top             =   2040
+         Width           =   6855
+         Begin VB.OptionButton Option12 
+            Caption         =   "删除筛选"
+            Height          =   375
+            Left            =   2040
+            TabIndex        =   51
+            Top             =   240
+            Width           =   1095
+         End
+         Begin VB.OptionButton Option31 
+            Caption         =   "删除所有；"
+            Height          =   375
+            Index           =   0
+            Left            =   120
+            TabIndex        =   46
+            Top             =   240
+            Width           =   1455
+         End
+         Begin VB.OptionButton Option31 
+            Caption         =   "从"
+            Height          =   375
+            Index           =   1
+            Left            =   3840
+            TabIndex        =   45
+            Top             =   240
+            Width           =   495
+         End
+         Begin VB.TextBox Text6 
+            Height          =   375
+            Left            =   4320
+            TabIndex        =   44
+            Top             =   240
+            Width           =   615
+         End
+         Begin VB.TextBox Text5 
+            Height          =   375
+            Left            =   5280
+            TabIndex        =   43
+            Top             =   240
+            Width           =   735
+         End
+         Begin VB.Label Label6 
+            Caption         =   "页到"
+            Height          =   255
+            Left            =   4920
+            TabIndex        =   48
+            Top             =   360
+            Width           =   735
+         End
+         Begin VB.Label Label5 
+            Caption         =   "页；"
+            Height          =   255
+            Left            =   6000
+            TabIndex        =   47
+            Top             =   360
+            Width           =   495
+         End
+      End
+   End
    Begin VB.Frame Frame2 
       Caption         =   "导入清单"
       Height          =   3555
       Index           =   2
-      Left            =   120
+      Left            =   1320
       TabIndex        =   24
-      Top             =   1200
+      Top             =   5760
       Width           =   7080
       Begin VB.Frame Frame12 
          Caption         =   "导入的范围"
@@ -352,6 +441,11 @@ Option Explicit
 Dim btnID As Variant
 Dim xlApp As Excel.Application
 Dim frameList(2) As msforms.Control
+
+Private Sub Command2_Click()
+    Unload Me
+End Sub
+
 Private Sub Form_Initialize()
 '    frameList = Array(Frame2, Frame5)
 End Sub
@@ -383,6 +477,10 @@ Private Sub Option7_Click()
     initTask ("UPDATE")
 End Sub
 
+Private Sub Option8_Click(Index As Integer)
+    initTask ("DELETE")
+End Sub
+
 Private Sub Text1_Change()
     Option2 = True
 End Sub
@@ -404,7 +502,9 @@ Private Sub initTask(taskName As Variant)
         Case "UPDATE"
             Call toggleFrame(1)
             Call mUtil.initComboBox(xlApp, Combo2, "选择Excel清单")
-            
+        Case "DELETE"
+            Call toggleFrame(3)
+            Call mUtil.initComboBox(xlApp, Combo6, "选择Excel清单")
     End Select
     
     Set mUtil = Nothing
@@ -433,6 +533,8 @@ Private Sub handleTask(strID As Variant)
             Call importSheets
         Case "UPDATE"
             Call updateSheets
+        Case "DELETE"
+            Call deleteSheets
             
     End Select
     
@@ -504,4 +606,31 @@ Public Sub importSheets()
     
     Set mUtil = Nothing
     Set mImporter = Nothing
+End Sub
+Public Sub deleteSheets()
+    Dim mUtil As New XlUtil
+    Dim mDeleter As New Deleter
+    Dim mBook As Workbook
+    Dim oStart, oEnd, mFirst
+    
+    xlApp.DisplayAlerts = False
+    
+    Set mBook = mUtil.getBook(xlApp, Combo6.Text)
+    
+    If Option31(0) = True Then
+        oStart = mUtil.getFirstSheetNum(mBook)
+        oEnd = mBook.Sheets.Count
+    End If
+    If Text5.Text <> "" And Text6.Text <> "" Then
+        mFirst = mUtil.getFirstSheetNum(mBook)
+        oStart = Text6.Text + mFirst - 1
+        oEnd = Text5.Text + mFirst - 1
+    End If
+    
+    
+    Call mDeleter.deleteBook(mBook, oStart, oEnd)
+    
+    xlApp.DisplayAlerts = True
+    Set mUtil = Nothing
+    Set mDeleter = Nothing
 End Sub
