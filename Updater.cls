@@ -30,15 +30,15 @@ Public Sub updateLinks(wBook As Workbook)
     Dim mUtil As New XlUtil
     Dim listNum, firstNum, sheetIndex
     Dim listName, preName, nextName
-    Dim i, j, cIndex
+    Dim i, j, cIndex, sheetsCount
     
-    Debug.Print "update das "
     listNum = mUtil.getListSheetNum(wBook)
     firstNum = mUtil.getFirstSheetNum(wBook)
     listName = wBook.Sheets(listNum).Name
-    Debug.Print listNum & "?" & firstNum
+'    Debug.Print listNum & "?" & firstNum
     
     With wBook
+        sheetsCount = .Sheets.Count
         For i = .Sheets.Count To firstNum Step -1
             Call updateSheetName(.Sheets(i))
         Next
@@ -46,8 +46,11 @@ Public Sub updateLinks(wBook As Workbook)
         For j = firstNum To .Sheets.Count - 1
             'cIndex
             cIndex = j - firstNum + 1
-            Call updateSheetLink(.Sheets(j), cIndex, listName, .Sheets(j - 1).Name, .Sheets(j + 1).Name)
+            Call updateSheetLink(.Sheets(j), cIndex, listName, .Sheets(j - 1).Name, .Sheets(j + 1).Name, False)
         Next
+        'format last Sheet
+        cIndex = sheetsCount - firstNum + 1
+        Call updateSheetLink(.Sheets(sheetsCount), cIndex, listName, .Sheets(sheetsCount - 1).Name, "", True)
     End With
     
     Set mUtil = Nothing
@@ -57,13 +60,13 @@ Public Sub updateList()
 End Sub
 
 
-Public Sub updateSheetLink(wSheet As Worksheet, CurrentIndex As Variant, listSheetName As Variant, preSheetName As Variant, nextSheetName As Variant)
+Public Sub updateSheetLink(wSheet As Worksheet, showIndex As Variant, listSheetName As Variant, preSheetName As Variant, nextSheetName As Variant, isEnd As Boolean)
     Dim mUtil As New XlUtil
     
     With wSheet
         .Cells.Hyperlinks.Delete
         
-        .Name = "(" & CurrentIndex & ")"
+        .Name = "(" & showIndex & ")"
             
          Select Case .Cells(3, 5).Value          '根据问题状态更新sheet标签颜色
              Case "绿":  .Tab.Color = 5287936
@@ -74,7 +77,7 @@ Public Sub updateSheetLink(wSheet As Worksheet, CurrentIndex As Variant, listShe
         
          With .Cells(1, 1)       '返回首页
 '             .Hyperlinks.Delete
-             .Hyperlinks.Add Anchor:=.Cells(1, 1), Address:="", SubAddress:="'" & listSheetName & "'!A" & (CurrentIndex + 2), _
+             .Hyperlinks.Add Anchor:=.Cells(1, 1), Address:="", SubAddress:="'" & listSheetName & "'!A" & (showIndex + 2), _
                  TextToDisplay:="问题报告", ScreenTip:="单击返回首页"
              .HorizontalAlignment = xlCenter
              .VerticalAlignment = xlCenter
@@ -98,7 +101,7 @@ Public Sub updateSheetLink(wSheet As Worksheet, CurrentIndex As Variant, listShe
              .Font.Bold = False
          End With
         
-'         If CurrentIndex < wBook.Sheets.Count Then
+         If isEnd = False Then
                  With .Cells(2, 3)       '下一页
                      .Value = "问题序号"
                      .Hyperlinks.Delete
@@ -111,7 +114,7 @@ Public Sub updateSheetLink(wSheet As Worksheet, CurrentIndex As Variant, listShe
                      .Font.Size = 11
                      .Font.Bold = False
                  End With
-'         End If
+         End If
     End With
 End Sub
 Public Sub updateSheetName(wSheet As Worksheet)

@@ -8,6 +8,7 @@ Class=XlUtil; input\XlUtil.cls
 Class=Creater; Creater.cls
 Class=Importer; Importer.cls
 Class=Updater; Updater.cls
+Class=Deleter; Deleter.cls
 Startup="Form1"
 ExeName32="T1125.exe"
 Command32=""
