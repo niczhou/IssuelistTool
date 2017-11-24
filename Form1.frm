@@ -243,7 +243,7 @@ Begin VB.Form Form1
       Top             =   4800
       Width           =   7095
       Begin VB.CommandButton Command2 
-         Caption         =   "取消"
+         Caption         =   "提示"
          Height          =   495
          Left            =   3840
          TabIndex        =   23
@@ -443,7 +443,7 @@ Dim xlApp As Excel.Application
 Dim frameList(2) As msforms.Control
 
 Private Sub Command2_Click()
-    Unload Me
+'   msg hint
 End Sub
 
 Private Sub Form_Initialize()
