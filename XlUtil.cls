@@ -18,8 +18,10 @@ Dim isExcelClosed As Boolean
 Public Function hashCode(ByVal str As Variant) As Variant
     Dim i As Integer
     Dim hashTemp
+    
+    hashTemp = 1
     Debug.Print str
-    For i = 0 To Len(str) - 1
+    For i = Len(str) - 1 To 0 Step -1
         hashTemp = Left(Left(31 * hashTemp, 6) + Asc(Mid(str, i + 1, 1)), 6)
     Next
     Debug.Print hashTemp
@@ -124,16 +126,19 @@ Public Function getSheetIndex(wSheet As Worksheet, wBook As Workbook) As Integer
         End If
     Next
 End Function
-Public Function getFilterArr(wSheet As Worksheet, strColumn As Variant) As Integer()
-    Dim filterArr
-    Dim rg As Range
+Public Function getFilterArr(wSheet As Worksheet) As Variant()
+'    Dim filterArr
+    Dim cl As Range
     With wSheet
-        For Each rg In .Columns(strColumn)
-            If rg.Show = True Then
-                filterArr.Add (rg.Row)
-                Debug.Print rg.Row
-            End If
-        Next
+'        For Each cl In .Columns(1)
+'                                Debug.Print cl.Row
+'            If cl.Hidden = False Then
+'                If cl.Row > 2 Then
+'                    getFilterArr.Add (cl.Row)
+'                    Debug.Print cl.Row
+'                End If
+'            End If
+'        Next
     End With
-    getFilterArr = filterArr
+
 End Function

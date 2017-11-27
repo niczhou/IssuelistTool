@@ -10,6 +10,144 @@ Begin VB.Form Form1
    ScaleWidth      =   8610
    StartUpPosition =   3  '窗口缺省
    Begin VB.Frame Frame2 
+      Caption         =   "导入清单"
+      Height          =   3675
+      Index           =   2
+      Left            =   120
+      TabIndex        =   24
+      Top             =   1080
+      Width           =   7080
+      Begin VB.Frame Frame12 
+         Caption         =   "导入的范围"
+         Height          =   735
+         Left            =   120
+         TabIndex        =   34
+         Top             =   1080
+         Width           =   6855
+         Begin VB.TextBox Text4 
+            Height          =   375
+            Left            =   3600
+            TabIndex        =   39
+            Top             =   240
+            Width           =   735
+         End
+         Begin VB.TextBox Text3 
+            Height          =   375
+            Left            =   2640
+            TabIndex        =   37
+            Top             =   240
+            Width           =   615
+         End
+         Begin VB.OptionButton Option15 
+            Caption         =   "从"
+            Height          =   375
+            Index           =   1
+            Left            =   2160
+            TabIndex        =   36
+            Top             =   240
+            Width           =   495
+         End
+         Begin VB.OptionButton Option15 
+            Caption         =   "导入所有；"
+            Height          =   375
+            Index           =   0
+            Left            =   120
+            TabIndex        =   35
+            Top             =   240
+            Width           =   1455
+         End
+         Begin VB.Label Label3 
+            Caption         =   "页；"
+            Height          =   255
+            Left            =   4320
+            TabIndex        =   40
+            Top             =   360
+            Width           =   495
+         End
+         Begin VB.Label Label4 
+            Caption         =   "页到"
+            Height          =   255
+            Left            =   3240
+            TabIndex        =   38
+            Top             =   360
+            Width           =   735
+         End
+      End
+      Begin VB.Frame Frame10 
+         Caption         =   "导入到"
+         Height          =   735
+         Left            =   120
+         TabIndex        =   32
+         Top             =   1800
+         Width           =   6855
+         Begin VB.ComboBox Combo4 
+            Height          =   300
+            Left            =   120
+            Style           =   2  'Dropdown List
+            TabIndex        =   33
+            Top             =   240
+            Width           =   6615
+         End
+      End
+      Begin VB.Frame Frame9 
+         Caption         =   "从此文件导入"
+         Height          =   735
+         Left            =   120
+         TabIndex        =   30
+         Top             =   240
+         Width           =   6855
+         Begin VB.ComboBox Combo3 
+            Height          =   300
+            Left            =   120
+            Style           =   2  'Dropdown List
+            TabIndex        =   31
+            Top             =   240
+            Width           =   6615
+         End
+      End
+      Begin VB.Frame Frame8 
+         Caption         =   "导入后的位置"
+         Height          =   735
+         Left            =   120
+         TabIndex        =   25
+         Top             =   2640
+         Width           =   6855
+         Begin VB.OptionButton Option11 
+            Caption         =   "在清单最后；"
+            Height          =   375
+            Index           =   0
+            Left            =   120
+            TabIndex        =   28
+            Top             =   240
+            Width           =   1455
+         End
+         Begin VB.OptionButton Option11 
+            Caption         =   "在"
+            Height          =   375
+            Index           =   1
+            Left            =   2160
+            TabIndex        =   27
+            Top             =   240
+            Width           =   495
+         End
+         Begin VB.TextBox Text2 
+            Height          =   375
+            Left            =   2640
+            TabIndex        =   26
+            Top             =   240
+            Width           =   615
+         End
+         Begin VB.Label Label2 
+            Caption         =   "页之后；"
+            Height          =   255
+            Left            =   3240
+            TabIndex        =   29
+            Top             =   360
+            Width           =   735
+         End
+      End
+   End
+   Begin VB.Frame Frame2 
       Caption         =   "批量输入"
       Height          =   3675
       Index           =   4
@@ -215,144 +353,6 @@ Begin VB.Form Form1
             TabIndex        =   5
             Top             =   240
             Width           =   6495
-         End
-      End
-   End
-   Begin VB.Frame Frame2 
-      Caption         =   "导入清单"
-      Height          =   3675
-      Index           =   2
-      Left            =   120
-      TabIndex        =   24
-      Top             =   1080
-      Width           =   7080
-      Begin VB.Frame Frame12 
-         Caption         =   "导入的范围"
-         Height          =   735
-         Left            =   120
-         TabIndex        =   34
-         Top             =   1080
-         Width           =   6855
-         Begin VB.TextBox Text4 
-            Height          =   375
-            Left            =   3600
-            TabIndex        =   39
-            Top             =   240
-            Width           =   735
-         End
-         Begin VB.TextBox Text3 
-            Height          =   375
-            Left            =   2640
-            TabIndex        =   37
-            Top             =   240
-            Width           =   615
-         End
-         Begin VB.OptionButton Option15 
-            Caption         =   "从"
-            Height          =   375
-            Index           =   1
-            Left            =   2160
-            TabIndex        =   36
-            Top             =   240
-            Width           =   495
-         End
-         Begin VB.OptionButton Option15 
-            Caption         =   "导入所有；"
-            Height          =   375
-            Index           =   0
-            Left            =   120
-            TabIndex        =   35
-            Top             =   240
-            Width           =   1455
-         End
-         Begin VB.Label Label3 
-            Caption         =   "页；"
-            Height          =   255
-            Left            =   4320
-            TabIndex        =   40
-            Top             =   360
-            Width           =   495
-         End
-         Begin VB.Label Label4 
-            Caption         =   "页到"
-            Height          =   255
-            Left            =   3240
-            TabIndex        =   38
-            Top             =   360
-            Width           =   735
-         End
-      End
-      Begin VB.Frame Frame10 
-         Caption         =   "导入到"
-         Height          =   735
-         Left            =   120
-         TabIndex        =   32
-         Top             =   1800
-         Width           =   6855
-         Begin VB.ComboBox Combo4 
-            Height          =   300
-            Left            =   120
-            Style           =   2  'Dropdown List
-            TabIndex        =   33
-            Top             =   240
-            Width           =   6615
-         End
-      End
-      Begin VB.Frame Frame9 
-         Caption         =   "从此文件导入"
-         Height          =   735
-         Left            =   120
-         TabIndex        =   30
-         Top             =   240
-         Width           =   6855
-         Begin VB.ComboBox Combo3 
-            Height          =   300
-            Left            =   120
-            Style           =   2  'Dropdown List
-            TabIndex        =   31
-            Top             =   240
-            Width           =   6615
-         End
-      End
-      Begin VB.Frame Frame8 
-         Caption         =   "导入后的位置"
-         Height          =   735
-         Left            =   120
-         TabIndex        =   25
-         Top             =   2640
-         Width           =   6855
-         Begin VB.OptionButton Option11 
-            Caption         =   "在清单最后；"
-            Height          =   375
-            Index           =   0
-            Left            =   120
-            TabIndex        =   28
-            Top             =   240
-            Width           =   1455
-         End
-         Begin VB.OptionButton Option11 
-            Caption         =   "在"
-            Height          =   375
-            Index           =   1
-            Left            =   2160
-            TabIndex        =   27
-            Top             =   240
-            Width           =   495
-         End
-         Begin VB.TextBox Text2 
-            Height          =   375
-            Left            =   2640
-            TabIndex        =   26
-            Top             =   240
-            Width           =   615
-         End
-         Begin VB.Label Label2 
-            Caption         =   "页之后；"
-            Height          =   255
-            Left            =   3240
-            TabIndex        =   29
-            Top             =   360
-            Width           =   735
          End
       End
    End
@@ -690,8 +690,8 @@ End Sub
 Private Sub handleTask(strID As Variant)
     Dim mUtil As New XlUtil
     
-    Me.Hide
     xlApp.Visible = True
+    Me.Show 0
     
     Select Case strID
         Case "CREATE"
@@ -710,7 +710,7 @@ Private Sub handleTask(strID As Variant)
 End Sub
 Private Sub handleCreate()
     Dim mUtil As New XlUtil
-    Dim xCreater As New Creater
+    Dim mCreater As New Creater
     Dim mBook As Workbook
     Dim sNum
     
@@ -721,7 +721,10 @@ Private Sub handleCreate()
         sNum = mBook.Worksheets.Count
     End If
     
-    Call xCreater.createBook(mBook, sNum, Text10.Text)
+    Call mCreater.createBook(mBook, sNum, Text10.Text)
+    
+    Set mUtil = Nothing
+    Set mCreater = Nothing
 End Sub
 Private Sub handleUpdate()
     Dim mUtil As New XlUtil
@@ -805,7 +808,7 @@ Public Sub handleDelete()
 End Sub
 Public Sub handleInput()
     Dim mUtil As New XlUtil
-    Dim mDeleter As New Inputer
+    Dim mInputer As New Inputer
     Dim mBook As Workbook
     Dim oStart, oEnd, mFirst
     
@@ -824,6 +827,6 @@ Public Sub handleInput()
     Call mInputer.inputBook(mBook, oStart, oEnd, Combo7.Text, Text9.Text)
     
     Set mUtil = Nothing
-    Set mDeleter = Nothing
+    Set mInputer = Nothing
 End Sub
 

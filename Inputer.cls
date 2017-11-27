@@ -12,7 +12,7 @@ Attribute VB_Creatable = True
 Attribute VB_PredeclaredId = False
 Attribute VB_Exposed = False
 Dim inputArr
-Public Function inputBook(wBook As Workbook, startSheetNum As Integer, endSheetNum As Integer, strRange As Variant, strInput As Variant)
+Public Function inputBook(wBook As Workbook, startSheetNum As Variant, endSheetNum As Variant, strRange As Variant, strInput As Variant)
     Dim i
     
     With wBook
@@ -41,7 +41,7 @@ Private Function InputSheet(wSheet As Worksheet, strRange As Variant, strInput A
             If rg.Value Like strRange Then
                 Debug.Print rg.Row & "/" & rg.Column
                 rg.Offset(1, 0).Value = strInput
-            End With
+            End If
         Next
     End With
 End Function

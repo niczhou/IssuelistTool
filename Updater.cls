@@ -42,26 +42,53 @@ Public Sub updateBookLinks(wBook As Workbook)
         For i = .Sheets.Count To firstNum Step -1
             Call updateSheetName(.Sheets(i))
         Next
+        
+            'format first
+        cIndex = 1
+        Call updateSheetLink(.Sheets(sheetsCount), cIndex, listName, True, False)
     
-        For j = firstNum To .Sheets.Count - 1
+        For j = firstNum + 1 To .Sheets.Count - 1
             'cIndex
             cIndex = j - firstNum + 1
-            Call updateSheetLink(.Sheets(j), cIndex, listName, .Sheets(j - 1).Name, .Sheets(j + 1).Name, False)
+            Call updateSheetLink(.Sheets(j), cIndex, listName, False, False)
         Next
         'format last Sheet
         cIndex = sheetsCount - firstNum + 1
-        Call updateSheetLink(.Sheets(sheetsCount), cIndex, listName, .Sheets(sheetsCount - 1).Name, "", True)
+        Call updateSheetLink(.Sheets(sheetsCount), cIndex, listName, False, True)
     End With
     
     Set mUtil = Nothing
 End Sub
-Private Sub updateSheetLink(wSheet As Worksheet, showIndex As Variant, listSheetName As Variant, preSheetName As Variant, nextSheetName As Variant, isEnd As Boolean)
+Private Sub updateSheetName(wSheet As Worksheet)
     Dim mUtil As New XlUtil
+    With wSheet
+        Debug.Print .CodeName & "/" & .Name
+        .Name = mUtil.hashCode(.CodeName & .Name)
+    End With
+    Set mUtil = Nothing
+End Sub
+Public Sub updateTabColor(wSheet As Worksheet)
+
+    With wSheet
+        Select Case .Cells(3, 5).Value          '根据问题状态更新sheet标签颜色
+             Case "绿":  .Tab.Color = 5287936
+             Case "红":  .Tab.Color = 255
+             Case "黄":  .Tab.Color = 65535
+             Case Else:  .Tab.ColorIndex = xlNone: .Tab.TintAndShade = 0
+        End Select
+    End With
+End Sub
+
+Private Sub updateSheetLink(wSheet As Worksheet, showIndex As Variant, listSheetName As Variant, isFirst As Boolean, isLast As Boolean)
+    Dim mUtil As New XlUtil
+    Dim preSheetName, nextSheetName
     
     With wSheet
         .Cells.Hyperlinks.Delete
         
         .Name = "(" & showIndex & ")"
+        preSheetName = "(" & showIndex - 1 & ")"
+        nextSheetName = "(" & showIndex + 1 & ")"
             
          Select Case .Cells(3, 5).Value          '根据问题状态更新sheet标签颜色
              Case "绿":  .Tab.Color = 5287936
@@ -82,52 +109,37 @@ Private Sub updateSheetLink(wSheet As Worksheet, showIndex As Variant, listSheet
              .Font.Bold = True
 '                .Font.Underline = xlUnderlineStyleNone
          End With
-
-         With .Cells(2, 1)         '上一页
-             .Value = "序号"
-'             .Hyperlinks.Delete
-             .Hyperlinks.Add Anchor:=.Cells(1, 1), Address:="", SubAddress:="'" & preSheetName & "'!A2", _
-                 ScreenTip:="单击跳转上一页"
-             .HorizontalAlignment = xlCenter
-             .VerticalAlignment = xlCenter
-             .NumberFormatLocal = "G/通用格式"
-                .Font.ThemeColor = xlThemeColorLight1
-             .Font.Size = 11
-             .Font.Bold = False
-         End With
         
-         If isEnd = False Then
+        If isFirst = False Then
+             With .Cells(2, 1)         '上一页
+                 .Value = "序号"
+    '             .Hyperlinks.Delete
+                 .Hyperlinks.Add Anchor:=.Cells(1, 1), Address:="", SubAddress:="'" & preSheetName & "'!A2", _
+                     ScreenTip:="单击跳转上一页"
+                 .HorizontalAlignment = xlCenter
+                 .VerticalAlignment = xlCenter
+                 .NumberFormatLocal = "G/通用格式"
+                 .Font.ThemeColor = xlThemeColorLight1
+                 .Font.Size = 11
+                 .Font.Bold = False
+             End With
+        End If
+        
+         If isLast = False Then
                  With .Cells(2, 3)       '下一页
                      .Value = "问题序号"
-                     .Hyperlinks.Delete
+'                     .Hyperlinks.Delete
                      .Hyperlinks.Add Anchor:=.Cells(1, 1), Address:="", SubAddress:="'" & nextSheetName & "'!C2", _
                          ScreenTip:="单击跳转下一页"
                      .HorizontalAlignment = xlCenter
                      .VerticalAlignment = xlCenter
                      .NumberFormatLocal = "G/通用格式"
-                        .Font.ThemeColor = xlThemeColorLight1
+                    .Font.ThemeColor = xlThemeColorLight1
                      .Font.Size = 11
                      .Font.Bold = False
                  End With
          End If
     End With
-End Sub
-Private Sub updateSheetName(wSheet As Worksheet)
-    Dim mUtil As New XlUtil
-    With wSheet
-        Debug.Print .CodeName & .Name
-        .Name = mUtil.hashCode(.CodeName & .Name)
-    End With
+    
     Set mUtil = Nothing
-End Sub
-Public Sub updateTabColor(wSheet As Worksheet)
-
-    With wSheet
-        Select Case .Cells(3, 5).Value          '根据问题状态更新sheet标签颜色
-             Case "绿":  .Tab.Color = 5287936
-             Case "红":  .Tab.Color = 255
-             Case "黄":  .Tab.Color = 65535
-             Case Else:  .Tab.ColorIndex = xlNone: .Tab.TintAndShade = 0
-        End Select
-    End With
 End Sub

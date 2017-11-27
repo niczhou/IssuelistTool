@@ -22,8 +22,9 @@ Public Sub deleteBookByFilter(wBook As Workbook, wSheet As Worksheet)
     Dim mUtil As New XlUtil
     
     With wBook
-        Call mUtil.getFilterArr(wSheet, 1)
+        Call mUtil.getFilterArr(wSheet)
     End With
     
+    Set mUtil = Nothing
 End Sub
 
