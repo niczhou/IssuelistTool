@@ -11,7 +11,7 @@ Attribute VB_GlobalNameSpace = False
 Attribute VB_Creatable = True
 Attribute VB_PredeclaredId = False
 Attribute VB_Exposed = False
-Public Sub updateTabs(wBook As Workbook)
+Public Sub updateBookTabs(wBook As Workbook)
     Dim mUtil As New XlUtil
     Dim firstNum, i
     
@@ -26,7 +26,7 @@ Public Sub updateTabs(wBook As Workbook)
     Set mUtil = Nothing
     
 End Sub
-Public Sub updateLinks(wBook As Workbook)
+Public Sub updateBookLinks(wBook As Workbook)
     Dim mUtil As New XlUtil
     Dim listNum, firstNum, sheetIndex
     Dim listName, preName, nextName
@@ -55,12 +55,7 @@ Public Sub updateLinks(wBook As Workbook)
     
     Set mUtil = Nothing
 End Sub
-Public Sub updateList()
-
-End Sub
-
-
-Public Sub updateSheetLink(wSheet As Worksheet, showIndex As Variant, listSheetName As Variant, preSheetName As Variant, nextSheetName As Variant, isEnd As Boolean)
+Private Sub updateSheetLink(wSheet As Worksheet, showIndex As Variant, listSheetName As Variant, preSheetName As Variant, nextSheetName As Variant, isEnd As Boolean)
     Dim mUtil As New XlUtil
     
     With wSheet
@@ -117,7 +112,7 @@ Public Sub updateSheetLink(wSheet As Worksheet, showIndex As Variant, listSheetN
          End If
     End With
 End Sub
-Public Sub updateSheetName(wSheet As Worksheet)
+Private Sub updateSheetName(wSheet As Worksheet)
     Dim mUtil As New XlUtil
     With wSheet
         .Name = mUtil.hashCode(.CodeName & .Name)

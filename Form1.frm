@@ -10,12 +10,117 @@ Begin VB.Form Form1
    ScaleWidth      =   8610
    StartUpPosition =   3  '窗口缺省
    Begin VB.Frame Frame2 
+      Caption         =   "批量输入"
+      Height          =   3675
+      Index           =   4
+      Left            =   120
+      TabIndex        =   52
+      Top             =   1080
+      Width           =   7080
+      Begin VB.Frame Frame16 
+         Caption         =   "选择输入内容"
+         Height          =   1335
+         Left            =   120
+         TabIndex        =   63
+         Top             =   1200
+         Width           =   6855
+         Begin VB.ComboBox Combo7 
+            Height          =   300
+            Left            =   120
+            Style           =   2  'Dropdown List
+            TabIndex        =   64
+            Top             =   240
+            Width           =   4455
+         End
+      End
+      Begin VB.Frame Frame15 
+         Caption         =   "输入的范围"
+         Height          =   735
+         Left            =   120
+         TabIndex        =   55
+         Top             =   2760
+         Width           =   6855
+         Begin VB.TextBox Text8 
+            Height          =   375
+            Left            =   5280
+            TabIndex        =   60
+            Top             =   240
+            Width           =   735
+         End
+         Begin VB.TextBox Text7 
+            Height          =   375
+            Left            =   4320
+            TabIndex        =   59
+            Top             =   240
+            Width           =   615
+         End
+         Begin VB.OptionButton Option31 
+            Caption         =   "从"
+            Height          =   375
+            Index           =   3
+            Left            =   3840
+            TabIndex        =   58
+            Top             =   240
+            Width           =   495
+         End
+         Begin VB.OptionButton Option31 
+            Caption         =   "所有；"
+            Height          =   375
+            Index           =   2
+            Left            =   120
+            TabIndex        =   57
+            Top             =   240
+            Width           =   1455
+         End
+         Begin VB.OptionButton Option13 
+            Caption         =   "筛选"
+            Height          =   375
+            Left            =   2040
+            TabIndex        =   56
+            Top             =   240
+            Width           =   1095
+         End
+         Begin VB.Label Label8 
+            Caption         =   "页；"
+            Height          =   255
+            Left            =   6000
+            TabIndex        =   62
+            Top             =   360
+            Width           =   495
+         End
+         Begin VB.Label Label7 
+            Caption         =   "页到"
+            Height          =   255
+            Left            =   4920
+            TabIndex        =   61
+            Top             =   360
+            Width           =   735
+         End
+      End
+      Begin VB.Frame Frame13 
+         Caption         =   "选择文件"
+         Height          =   735
+         Left            =   120
+         TabIndex        =   53
+         Top             =   360
+         Width           =   6855
+         Begin VB.ComboBox Combo5 
+            Height          =   300
+            Left            =   120
+            Style           =   2  'Dropdown List
+            TabIndex        =   54
+            Top             =   240
+            Width           =   4455
+         End
+      End
+   End
+   Begin VB.Frame Frame2 
       Caption         =   "批量删除"
       Height          =   3555
       Index           =   3
-      Left            =   120
+      Left            =   1920
       TabIndex        =   41
-      Top             =   1080
+      Top             =   5880
       Width           =   7080
       Begin VB.Frame Frame14 
          Caption         =   "选择文件"
@@ -381,6 +486,7 @@ Begin VB.Form Form1
       End
    End
    Begin VB.Frame Frame1 
+      BackColor       =   &H80000005&
       Caption         =   "选择工具"
       Height          =   855
       Left            =   120
@@ -447,7 +553,13 @@ Private Sub Command2_Click()
 End Sub
 
 Private Sub Form_Initialize()
-'    frameList = Array(Frame2, Frame5)
+'    Debug.Print Format(Date, "YYYYMMDD")
+    If CLng(Format(Date, "YYYYMMDD")) > 20180401 Then
+        toggleFrame (-1)
+        Frame1.Enabled = False
+        Frame5.Enabled = False
+    End If
+
 End Sub
 Private Sub Form_Load()
 '    Debug.Print Frame2.Name
@@ -481,11 +593,16 @@ Private Sub Option8_Click(Index As Integer)
     initTask ("DELETE")
 End Sub
 
+Private Sub Option9_Click(Index As Integer)
+    initTask ("INPUT")
+End Sub
+
 Private Sub Text1_Change()
     Option2 = True
 End Sub
 Private Sub initTask(taskName As Variant)
     Dim mUtil As New XlUtil
+    Dim mInputer As Inputer
     
     btnID = taskName
     
@@ -505,18 +622,28 @@ Private Sub initTask(taskName As Variant)
         Case "DELETE"
             Call toggleFrame(3)
             Call mUtil.initComboBox(xlApp, Combo6, "选择Excel清单")
+        Case "INPUT"
+            Call toggleFrame(4)
+            Call mUtil.initComboBox(xlApp, Combo5, "选择Excel清单")
+            Set mInputer = New Inputer
+            mInputer.initInputFiter Combo7, "选择输入内容"
+            Set mInputer = Nothing
     End Select
     
     Set mUtil = Nothing
 End Sub
-Private Sub toggleFrame(showIndex As Integer)
+Private Sub toggleFrame(showIndex As Variant)
     Dim f As Frame
     For Each f In Frame2
         f.Visible = False
     Next
-    Frame2(showIndex).Visible = True
-    Frame2(showIndex).Top = 1080
-    Frame2(showIndex).Left = 120
+    If showIndex = -1 Then
+'        MsgBox "程序已经过期"
+    Else
+        Frame2(showIndex).Visible = True
+        Frame2(showIndex).Top = 1080
+        Frame2(showIndex).Left = 120
+    End If
    
 End Sub
 
@@ -528,20 +655,20 @@ Private Sub handleTask(strID As Variant)
     
     Select Case strID
         Case "CREATE"
-            Call createSheet
+            Call handleCreate
         Case "IMPORT"
-            Call importSheets
+            Call handleImport
         Case "UPDATE"
-            Call updateSheets
+            Call handleUpdate
         Case "DELETE"
-            Call deleteSheets
+            Call handleDelete
             
     End Select
     
     Me.Show 0
     Set mUtil = Nothing
 End Sub
-Private Sub createSheet()
+Private Sub handleCreate()
     Dim mUtil As New XlUtil
     Dim xCreater As New Creater
     Dim mBook As Workbook
@@ -557,7 +684,7 @@ Private Sub createSheet()
     Call xCreater.addNewSheet(mBook, sNum)
     Call xCreater.formatNewSheet
 End Sub
-Private Sub updateSheets()
+Private Sub handleUpdate()
     Dim mUtil As New XlUtil
     Dim mUpdater As New Updater
     Dim mBook As Workbook
@@ -566,17 +693,17 @@ Private Sub updateSheets()
     Debug.Print mBook.Name
     
     If Option3 = True Then
-        Call mUpdater.updateTabs(mBook)
+        Call mUpdater.updateBookTabs(mBook)
     End If
     
     If Option4 = True Then
-        Call mUpdater.updateLinks(mBook)
+        Call mUpdater.updateBookLinks(mBook)
     End If
     
     Set mUtil = Nothing
     Set mUpdater = Nothing
 End Sub
-Public Sub importSheets()
+Public Sub handleImport()
     Dim mUtil As New XlUtil
     Dim mImporter As New Importer
     Dim mBook As Workbook, oBook As Workbook
@@ -607,7 +734,7 @@ Public Sub importSheets()
     Set mUtil = Nothing
     Set mImporter = Nothing
 End Sub
-Public Sub deleteSheets()
+Public Sub handleDelete()
     Dim mUtil As New XlUtil
     Dim mDeleter As New Deleter
     Dim mBook As Workbook
