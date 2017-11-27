@@ -13,16 +13,18 @@ Attribute VB_PredeclaredId = False
 Attribute VB_Exposed = False
 Option Explicit
 
-Dim newSheet As Worksheet
-Public Sub addNewSheet(wBook As Workbook, SheetNum As Variant)
-
-    Set newSheet = wBook.Sheets.Add(after:=wBook.Sheets(SheetNum))
-
+Public Sub createBook(wBook As Workbook, SheetNum As Variant, newCount As Integer)
+    Dim i
+    Dim newSheet As Worksheet
+    For i = 1 To newCount
+        Set newSheet = wBook.Sheets.Add(after:=wBook.Sheets(SheetNum))
+        Call formatNewSheet(newSheet)
+    Next
 End Sub
 
-Public Sub formatNewSheet()
+Public Sub formatNewSheet(wSheet As Worksheet)
 
-    With newSheet
+    With wSheet
     
         With .Range(.Cells(1, 1), .Cells(11, 6))
     

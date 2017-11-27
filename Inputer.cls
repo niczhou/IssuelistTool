@@ -12,8 +12,14 @@ Attribute VB_Creatable = True
 Attribute VB_PredeclaredId = False
 Attribute VB_Exposed = False
 Dim inputArr
-Public Function inputBook(wBook As Workbook)
-
+Public Function inputBook(wBook As Workbook, startSheetNum As Integer, endSheetNum As Integer, strRange As Variant, strInput As Variant)
+    Dim i
+    
+    With wBook
+        For i = startSheetNum To endSheetNum
+            Call InputSheet(.Sheets(i), strRange, strInput)
+        Next
+    End With
 End Function
 
 Public Sub initInputFiter(mCombo As ComboBox, strTip As Variant)
@@ -28,6 +34,14 @@ Public Sub initInputFiter(mCombo As ComboBox, strTip As Variant)
         mCombo.AddItem inputArr(i)
     Next
 End Sub
-Private Function getInputCell(strInput)
-
+Private Function InputSheet(wSheet As Worksheet, strRange As Variant, strInput As Variant)
+    Dim rg As Range
+    With wSheet
+        For Each rg In .Range(.Cells(1, 1), Cells(15, 8))
+            If rg.Value Like strRange Then
+                Debug.Print rg.Row & "/" & rg.Column
+                rg.Offset(1, 0).Value = strInput
+            End With
+        Next
+    End With
 End Function

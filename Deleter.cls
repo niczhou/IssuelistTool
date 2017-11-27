@@ -17,6 +17,13 @@ Public Sub deleteBook(mBook As Workbook, startNum, endNum)
     For i = endNum To startNum Step -1
         mBook.Sheets(i).Delete
     Next
-
+End Sub
+Public Sub deleteBookByFilter(wBook As Workbook, wSheet As Worksheet)
+    Dim mUtil As New XlUtil
+    
+    With wBook
+        Call mUtil.getFilterArr(wSheet, 1)
+    End With
+    
 End Sub
 

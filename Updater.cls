@@ -115,6 +115,7 @@ End Sub
 Private Sub updateSheetName(wSheet As Worksheet)
     Dim mUtil As New XlUtil
     With wSheet
+        Debug.Print .CodeName & .Name
         .Name = mUtil.hashCode(.CodeName & .Name)
     End With
     Set mUtil = Nothing

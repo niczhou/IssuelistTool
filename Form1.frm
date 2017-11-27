@@ -13,9 +13,9 @@ Begin VB.Form Form1
       Caption         =   "批量输入"
       Height          =   3675
       Index           =   4
-      Left            =   120
+      Left            =   4560
       TabIndex        =   52
-      Top             =   1080
+      Top             =   3960
       Width           =   7080
       Begin VB.Frame Frame16 
          Caption         =   "选择输入内容"
@@ -24,13 +24,21 @@ Begin VB.Form Form1
          TabIndex        =   63
          Top             =   1200
          Width           =   6855
+         Begin VB.TextBox Text9 
+            Height          =   375
+            Left            =   120
+            TabIndex        =   65
+            Text            =   "输入的内容"
+            Top             =   840
+            Width           =   6495
+         End
          Begin VB.ComboBox Combo7 
             Height          =   300
             Left            =   120
             Style           =   2  'Dropdown List
             TabIndex        =   64
             Top             =   240
-            Width           =   4455
+            Width           =   6495
          End
       End
       Begin VB.Frame Frame15 
@@ -54,27 +62,28 @@ Begin VB.Form Form1
             Top             =   240
             Width           =   615
          End
-         Begin VB.OptionButton Option31 
+         Begin VB.OptionButton Option21 
             Caption         =   "从"
             Height          =   375
-            Index           =   3
+            Index           =   2
             Left            =   3840
             TabIndex        =   58
             Top             =   240
             Width           =   495
          End
-         Begin VB.OptionButton Option31 
+         Begin VB.OptionButton Option21 
             Caption         =   "所有；"
             Height          =   375
-            Index           =   2
+            Index           =   0
             Left            =   120
             TabIndex        =   57
             Top             =   240
             Width           =   1455
          End
-         Begin VB.OptionButton Option13 
+         Begin VB.OptionButton Option21 
             Caption         =   "筛选"
             Height          =   375
+            Index           =   1
             Left            =   2040
             TabIndex        =   56
             Top             =   240
@@ -110,106 +119,112 @@ Begin VB.Form Form1
             Style           =   2  'Dropdown List
             TabIndex        =   54
             Top             =   240
-            Width           =   4455
+            Width           =   6495
          End
       End
    End
    Begin VB.Frame Frame2 
-      Caption         =   "批量删除"
-      Height          =   3555
-      Index           =   3
-      Left            =   1920
-      TabIndex        =   41
-      Top             =   5880
+      Caption         =   "创建问题"
+      Height          =   3675
+      Index           =   0
+      Left            =   960
+      TabIndex        =   3
+      Top             =   1320
       Width           =   7080
-      Begin VB.Frame Frame14 
-         Caption         =   "选择文件"
+      Begin VB.Frame Frame17 
+         Caption         =   "输入新问题数量"
          Height          =   735
          Left            =   120
-         TabIndex        =   49
-         Top             =   480
+         TabIndex        =   66
+         Top             =   2640
          Width           =   6855
-         Begin VB.ComboBox Combo6 
-            Height          =   300
-            Left            =   120
-            Style           =   2  'Dropdown List
-            TabIndex        =   50
-            Top             =   240
-            Width           =   4455
-         End
-      End
-      Begin VB.Frame Frame11 
-         Caption         =   "删除的范围"
-         Height          =   735
-         Left            =   120
-         TabIndex        =   42
-         Top             =   2040
-         Width           =   6855
-         Begin VB.OptionButton Option12 
-            Caption         =   "删除筛选"
+         Begin VB.TextBox Text10 
             Height          =   375
-            Left            =   2040
-            TabIndex        =   51
-            Top             =   240
-            Width           =   1095
-         End
-         Begin VB.OptionButton Option31 
-            Caption         =   "删除所有；"
-            Height          =   375
-            Index           =   0
-            Left            =   120
-            TabIndex        =   46
-            Top             =   240
-            Width           =   1455
-         End
-         Begin VB.OptionButton Option31 
-            Caption         =   "从"
-            Height          =   375
-            Index           =   1
-            Left            =   3840
-            TabIndex        =   45
-            Top             =   240
-            Width           =   495
-         End
-         Begin VB.TextBox Text6 
-            Height          =   375
-            Left            =   4320
-            TabIndex        =   44
+            Left            =   480
+            TabIndex        =   67
             Top             =   240
             Width           =   615
          End
-         Begin VB.TextBox Text5 
+         Begin VB.Label Label10 
+            Caption         =   "共"
+            Height          =   255
+            Left            =   240
+            TabIndex        =   69
+            Top             =   360
+            Width           =   375
+         End
+         Begin VB.Label Label9 
+            Caption         =   "个问题；"
+            Height          =   255
+            Left            =   1080
+            TabIndex        =   68
+            Top             =   360
+            Width           =   735
+         End
+      End
+      Begin VB.Frame Frame4 
+         Caption         =   "选择新问题位置"
+         Height          =   735
+         Left            =   120
+         TabIndex        =   6
+         Top             =   1440
+         Width           =   6855
+         Begin VB.TextBox Text1 
             Height          =   375
-            Left            =   5280
-            TabIndex        =   43
+            Left            =   2640
+            TabIndex        =   9
             Top             =   240
-            Width           =   735
+            Width           =   615
          End
-         Begin VB.Label Label6 
-            Caption         =   "页到"
-            Height          =   255
-            Left            =   4920
-            TabIndex        =   48
-            Top             =   360
-            Width           =   735
-         End
-         Begin VB.Label Label5 
-            Caption         =   "页；"
-            Height          =   255
-            Left            =   6000
-            TabIndex        =   47
-            Top             =   360
+         Begin VB.OptionButton Option2 
+            Caption         =   "在"
+            Height          =   375
+            Left            =   2160
+            TabIndex        =   8
+            Top             =   240
             Width           =   495
+         End
+         Begin VB.OptionButton Option1 
+            Caption         =   "在最后"
+            Height          =   375
+            Left            =   120
+            TabIndex        =   7
+            Top             =   240
+            Width           =   1455
+         End
+         Begin VB.Label Label1 
+            Caption         =   "之后"
+            Height          =   255
+            Left            =   3240
+            TabIndex        =   10
+            Top             =   360
+            Width           =   735
+         End
+      End
+      Begin VB.Frame Frame3 
+         Caption         =   "选择Excel文件"
+         Height          =   735
+         Left            =   120
+         TabIndex        =   4
+         Top             =   480
+         Width           =   6855
+         Begin VB.ComboBox Combo1 
+            Height          =   300
+            Left            =   120
+            Style           =   2  'Dropdown List
+            TabIndex        =   5
+            Top             =   240
+            Width           =   6495
          End
       End
    End
    Begin VB.Frame Frame2 
       Caption         =   "导入清单"
-      Height          =   3555
+      Height          =   3675
       Index           =   2
-      Left            =   1320
+      Left            =   120
       TabIndex        =   24
-      Top             =   5760
+      Top             =   1080
       Width           =   7080
       Begin VB.Frame Frame12 
          Caption         =   "导入的范围"
@@ -280,7 +295,7 @@ Begin VB.Form Form1
             Style           =   2  'Dropdown List
             TabIndex        =   33
             Top             =   240
-            Width           =   4455
+            Width           =   6615
          End
       End
       Begin VB.Frame Frame9 
@@ -296,7 +311,7 @@ Begin VB.Form Form1
             Style           =   2  'Dropdown List
             TabIndex        =   31
             Top             =   240
-            Width           =   4455
+            Width           =   6615
          End
       End
       Begin VB.Frame Frame8 
@@ -364,129 +379,7 @@ Begin VB.Form Form1
          Width           =   1335
       End
    End
-   Begin VB.Frame Frame2 
-      Caption         =   "更新清单"
-      Height          =   2000
-      Index           =   1
-      Left            =   360
-      TabIndex        =   11
-      Top             =   6240
-      Width           =   7080
-      Begin VB.Frame Frame6 
-         Caption         =   "Frame4"
-         Height          =   735
-         Left            =   120
-         TabIndex        =   14
-         Top             =   1080
-         Width           =   6855
-         Begin VB.OptionButton Option10 
-            Caption         =   "更新汇总清单"
-            Height          =   375
-            Left            =   3240
-            TabIndex        =   21
-            Top             =   240
-            Width           =   1575
-         End
-         Begin VB.OptionButton Option3 
-            Caption         =   "仅更新标签"
-            Height          =   375
-            Left            =   120
-            TabIndex        =   16
-            Top             =   240
-            Width           =   1455
-         End
-         Begin VB.OptionButton Option4 
-            Caption         =   "更新清单链接"
-            Height          =   375
-            Left            =   1560
-            TabIndex        =   15
-            Top             =   240
-            Width           =   1455
-         End
-      End
-      Begin VB.Frame Frame7 
-         Caption         =   "Frame3"
-         Height          =   735
-         Left            =   120
-         TabIndex        =   12
-         Top             =   240
-         Width           =   6855
-         Begin VB.ComboBox Combo2 
-            Height          =   300
-            Left            =   120
-            Style           =   2  'Dropdown List
-            TabIndex        =   13
-            Top             =   240
-            Width           =   3735
-         End
-      End
-   End
-   Begin VB.Frame Frame2 
-      Caption         =   "创建问题"
-      Height          =   2000
-      Index           =   0
-      Left            =   120
-      TabIndex        =   3
-      Top             =   5880
-      Width           =   7080
-      Begin VB.Frame Frame4 
-         Caption         =   "Frame4"
-         Height          =   735
-         Left            =   120
-         TabIndex        =   6
-         Top             =   1080
-         Width           =   6855
-         Begin VB.TextBox Text1 
-            Height          =   375
-            Left            =   2640
-            TabIndex        =   9
-            Top             =   240
-            Width           =   615
-         End
-         Begin VB.OptionButton Option2 
-            Caption         =   "在"
-            Height          =   375
-            Left            =   2160
-            TabIndex        =   8
-            Top             =   240
-            Width           =   495
-         End
-         Begin VB.OptionButton Option1 
-            Caption         =   "在最后"
-            Height          =   375
-            Left            =   120
-            TabIndex        =   7
-            Top             =   240
-            Width           =   1455
-         End
-         Begin VB.Label Label1 
-            Caption         =   "之后"
-            Height          =   255
-            Left            =   3240
-            TabIndex        =   10
-            Top             =   360
-            Width           =   735
-         End
-      End
-      Begin VB.Frame Frame3 
-         Caption         =   "Frame3"
-         Height          =   735
-         Left            =   120
-         TabIndex        =   4
-         Top             =   240
-         Width           =   6855
-         Begin VB.ComboBox Combo1 
-            Height          =   300
-            Left            =   120
-            Style           =   2  'Dropdown List
-            TabIndex        =   5
-            Top             =   240
-            Width           =   4455
-         End
-      End
-   End
    Begin VB.Frame Frame1 
-      BackColor       =   &H80000005&
       Caption         =   "选择工具"
       Height          =   855
       Left            =   120
@@ -536,6 +429,153 @@ Begin VB.Form Form1
          Width           =   1215
       End
    End
+   Begin VB.Frame Frame2 
+      Caption         =   "批量删除"
+      Height          =   3555
+      Index           =   3
+      Left            =   1200
+      TabIndex        =   41
+      Top             =   5640
+      Width           =   7080
+      Begin VB.Frame Frame14 
+         Caption         =   "选择文件"
+         Height          =   735
+         Left            =   120
+         TabIndex        =   49
+         Top             =   480
+         Width           =   6855
+         Begin VB.ComboBox Combo6 
+            Height          =   300
+            Left            =   120
+            Style           =   2  'Dropdown List
+            TabIndex        =   50
+            Top             =   240
+            Width           =   6615
+         End
+      End
+      Begin VB.Frame Frame11 
+         Caption         =   "删除的范围"
+         Height          =   735
+         Left            =   120
+         TabIndex        =   42
+         Top             =   2040
+         Width           =   6855
+         Begin VB.OptionButton Option31 
+            Caption         =   "删除筛选"
+            Height          =   375
+            Index           =   1
+            Left            =   2040
+            TabIndex        =   51
+            Top             =   240
+            Width           =   1095
+         End
+         Begin VB.OptionButton Option31 
+            Caption         =   "删除所有；"
+            Height          =   375
+            Index           =   0
+            Left            =   120
+            TabIndex        =   46
+            Top             =   240
+            Width           =   1455
+         End
+         Begin VB.OptionButton Option31 
+            Caption         =   "从"
+            Height          =   375
+            Index           =   2
+            Left            =   3840
+            TabIndex        =   45
+            Top             =   240
+            Width           =   495
+         End
+         Begin VB.TextBox Text6 
+            Height          =   375
+            Left            =   4320
+            TabIndex        =   44
+            Top             =   240
+            Width           =   615
+         End
+         Begin VB.TextBox Text5 
+            Height          =   375
+            Left            =   5280
+            TabIndex        =   43
+            Top             =   240
+            Width           =   735
+         End
+         Begin VB.Label Label6 
+            Caption         =   "页到"
+            Height          =   255
+            Left            =   4920
+            TabIndex        =   48
+            Top             =   360
+            Width           =   735
+         End
+         Begin VB.Label Label5 
+            Caption         =   "页；"
+            Height          =   255
+            Left            =   6000
+            TabIndex        =   47
+            Top             =   360
+            Width           =   495
+         End
+      End
+   End
+   Begin VB.Frame Frame2 
+      Caption         =   "更新清单"
+      Height          =   3675
+      Index           =   1
+      Left            =   480
+      TabIndex        =   11
+      Top             =   5880
+      Width           =   7080
+      Begin VB.Frame Frame6 
+         Caption         =   "选择更新内容"
+         Height          =   735
+         Left            =   120
+         TabIndex        =   14
+         Top             =   2040
+         Width           =   6855
+         Begin VB.OptionButton Option10 
+            Caption         =   "更新汇总清单"
+            Height          =   375
+            Left            =   3240
+            TabIndex        =   21
+            Top             =   240
+            Width           =   1575
+         End
+         Begin VB.OptionButton Option3 
+            Caption         =   "仅更新标签"
+            Height          =   375
+            Left            =   120
+            TabIndex        =   16
+            Top             =   240
+            Width           =   1455
+         End
+         Begin VB.OptionButton Option4 
+            Caption         =   "更新清单链接"
+            Height          =   375
+            Left            =   1560
+            TabIndex        =   15
+            Top             =   240
+            Width           =   1455
+         End
+      End
+      Begin VB.Frame Frame7 
+         Caption         =   "选择Excel文件"
+         Height          =   735
+         Left            =   120
+         TabIndex        =   12
+         Top             =   720
+         Width           =   6855
+         Begin VB.ComboBox Combo2 
+            Height          =   300
+            Left            =   120
+            Style           =   2  'Dropdown List
+            TabIndex        =   13
+            Top             =   240
+            Width           =   6495
+         End
+      End
+   End
 End
 Attribute VB_Name = "Form1"
 Attribute VB_GlobalNameSpace = False
@@ -563,8 +603,8 @@ Private Sub Form_Initialize()
 End Sub
 Private Sub Form_Load()
 '    Debug.Print Frame2.Name
-    Option6 = True
-    Option15(0) = True
+'    Option6 = True
+'    Option15(0) = True
     Me.Height = 6266
     Me.Width = 7515
 End Sub
@@ -681,8 +721,7 @@ Private Sub handleCreate()
         sNum = mBook.Worksheets.Count
     End If
     
-    Call xCreater.addNewSheet(mBook, sNum)
-    Call xCreater.formatNewSheet
+    Call xCreater.createBook(mBook, sNum, Text10.Text)
 End Sub
 Private Sub handleUpdate()
     Dim mUtil As New XlUtil
@@ -738,9 +777,37 @@ Public Sub handleDelete()
     Dim mUtil As New XlUtil
     Dim mDeleter As New Deleter
     Dim mBook As Workbook
-    Dim oStart, oEnd, mFirst
+    Dim oStart, oEnd, mFirst, oList
     
     xlApp.DisplayAlerts = False
+    
+    Set mBook = mUtil.getBook(xlApp, Combo6.Text)
+    
+    If Option31(1) = False Then
+        If Option31(0) = True Then
+            oStart = mUtil.getFirstSheetNum(mBook)
+            oEnd = mBook.Sheets.Count
+        End If
+        If Text5.Text <> "" And Text6.Text <> "" Then
+            mFirst = mUtil.getFirstSheetNum(mBook)
+            oStart = Text6.Text + mFirst - 1
+            oEnd = Text5.Text + mFirst - 1
+        End If
+        
+        Call mDeleter.deleteBook(mBook, oStart, oEnd)
+    Else
+        oList = mUtil.getListSheetNum(mBook)
+        Call mDeleter.deleteBookByFilter(mBook, mBook.Sheets(oList))
+    End If
+    xlApp.DisplayAlerts = True
+    Set mUtil = Nothing
+    Set mDeleter = Nothing
+End Sub
+Public Sub handleInput()
+    Dim mUtil As New XlUtil
+    Dim mDeleter As New Inputer
+    Dim mBook As Workbook
+    Dim oStart, oEnd, mFirst
     
     Set mBook = mUtil.getBook(xlApp, Combo6.Text)
     
@@ -748,16 +815,15 @@ Public Sub handleDelete()
         oStart = mUtil.getFirstSheetNum(mBook)
         oEnd = mBook.Sheets.Count
     End If
-    If Text5.Text <> "" And Text6.Text <> "" Then
+    If Text7.Text <> "" And Text8.Text <> "" Then
         mFirst = mUtil.getFirstSheetNum(mBook)
-        oStart = Text6.Text + mFirst - 1
-        oEnd = Text5.Text + mFirst - 1
+        oStart = Text7.Text + mFirst - 1
+        oEnd = Text8.Text + mFirst - 1
     End If
     
+    Call mInputer.inputBook(mBook, oStart, oEnd, Combo7.Text, Text9.Text)
     
-    Call mDeleter.deleteBook(mBook, oStart, oEnd)
-    
-    xlApp.DisplayAlerts = True
     Set mUtil = Nothing
     Set mDeleter = Nothing
 End Sub
+
