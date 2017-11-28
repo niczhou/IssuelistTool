@@ -54,7 +54,7 @@ Public Function getBook(xlApp As Excel.Application, bookName As String) As Workb
     Dim i
     
     On Error GoTo ErrorHandler
-    If (bookName = "打开新Excel文件") Then
+    If (bookName Like "打开新Excel文件") Then
         Set getBook = xlApp.Workbooks.Open(FileName:=xlApp.GetOpenFilename("Excel Files (*.*), Excel Files(*.*)", , "打开新Excel文件"))
     ElseIf isExcelClosed = False Then
         For i = 1 To xlApp.Workbooks.Count

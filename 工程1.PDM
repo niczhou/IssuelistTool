@@ -1,0 +1,292 @@
+[Root]
+Most Recent Package=展开文件 2
+
+
+[Package|展开文件 1|Root]
+SubWizProgID=PDWizard.DepPkgSubWiz
+BuildFolder=C:\demo\IssuelistTool\output\p1
+
+[Package|展开文件 1|Configure DAO ISAMs]
+Applicable=No
+
+[Package|展开文件 1|Configure DAO ODBC]
+JetWorkspace=
+ODBCDirect=
+
+[Package|展开文件 1|Files Found]
+
+[Package|展开文件 1|Files Released]
+
+[Package|展开文件 1|Missing Dependency Information]
+C:\Windows\SysWOW64\FM20.DLL=
+C:\Program Files (x86)\Common Files\microsoft shared\OFFICE14\MSO.DLL=
+C:\Program Files (x86)\Microsoft Office\Office14\EXCEL.EXE=
+
+[Package|展开文件 1|Out-of-Date Dependency Information]
+
+[Package|展开文件 1|Files Added]
+
+[Package|展开文件 1|Files Removed]
+
+[Package|展开文件 1|Files In Project]
+C:\demo\IssuelistTool\output\ztool.exe=Yes
+C:\Windows\System32\msvbvm60.dll=Yes
+C:\Windows\System32\oleaut32.dll=Yes
+C:\Windows\System32\olepro32.dll=Yes
+C:\Windows\System32\asycfilt.dll=Yes
+C:\Windows\System32\stdole2.tlb=Yes
+C:\Program Files (x86)\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\COMCAT.DLL=Yes
+C:\Windows\System32\VB6CHS.DLL=Yes
+C:\Program Files (x86)\Microsoft Office\Office14\EXCEL.EXE=Yes
+C:\Program Files (x86)\Common Files\microsoft shared\OFFICE14\MSO.DLL=Yes
+C:\Windows\SysWOW64\FM20.DLL=Yes
+
+[Package|展开文件 1|Configure Registry Files]
+Applicable=No
+
+[Package|展开文件 1|Configure Remote Servers]
+Applicable=No
+
+[Package|展开文件 1|Install Locations]
+C:\demo\IssuelistTool\output\ztool.exe=$(AppPath)
+C:\Windows\System32\msvbvm60.dll=$(WinSysPathSysFile)
+C:\Windows\System32\oleaut32.dll=$(WinSysPathSysFile)
+C:\Windows\System32\olepro32.dll=$(WinSysPathSysFile)
+C:\Windows\System32\asycfilt.dll=$(WinSysPathSysFile)
+C:\Windows\System32\stdole2.tlb=$(WinSysPathSysFile)
+C:\Program Files (x86)\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\COMCAT.DLL=$(WinSysPathSysFile)
+C:\Windows\System32\VB6CHS.DLL=$(WinSysPath)
+C:\Program Files (x86)\Microsoft Office\Office14\EXCEL.EXE=$(AppPath)
+C:\Program Files (x86)\Common Files\microsoft shared\OFFICE14\MSO.DLL=$(WinSysPath)
+C:\Windows\SysWOW64\FM20.DLL=$(WinSysPath)
+C:\Program Files (x86)\Microsoft Visual Studio\VB98\Wizards\PDWizard\SETUP.EXE=$(AppPath)
+C:\Program Files (x86)\Microsoft Visual Studio\VB98\Wizards\PDWizard\SETUP1.EXE=$(WinPath)
+C:\Windows\System32\VB6STKIT.DLL=$(WinSysPathSysFile)
+C:\Program Files (x86)\Microsoft Visual Studio\VB98\Wizards\PDWizard\ST6UNST.EXE=$(WinPath)
+
+[Package|展开文件 1|Configure Shared Files]
+Applicable=Yes
+C:\demo\IssuelistTool\output\ztool.exe=No
+C:\Program Files (x86)\Microsoft Office\Office14\EXCEL.EXE=No
+
+[Package|展开文件 1|Distribution]
+Type=single
+Size=
+Title=ztool
+
+[Package|展开文件 1|IconGroups]
+Group0=ztool
+PrivateGroup0=True
+Parent0=$(Programs)
+
+[Package|展开文件 1|ztool]
+Icon1=ztool.exe
+Title1=ztool
+StartIn1=$(AppPath)
+Key1=Icon1
+
+[Package|展开文件 1|DepFile]
+DepCabFile=ztool.CAB
+DepCabRun=ztool.INF
+
+[Package|展开文件 1|Package]
+PackageFolder=C:\demo\IssuelistTool\output\p1
+ProjectFolder=C:\demo\IssuelistTool
+ServerSideCab=
+File1=C:\demo\IssuelistTool\output\p1\ztool.DEP
+Handler1=PDWizard.FolderDplySubWiz
+Handler2=PDWizard.WebPostDplySubWiz
+
+
+[Package|标准安装软件包 1|Root]
+SubWizProgID=PDWizard.SetupPkgSubWiz
+BuildFolder=C:\demo\IssuelistTool\output
+
+[Package|标准安装软件包 1|Configure DAO ISAMs]
+Applicable=No
+
+[Package|标准安装软件包 1|Configure DAO ODBC]
+JetWorkspace=
+ODBCDirect=
+
+[Package|标准安装软件包 1|Files Found]
+
+[Package|标准安装软件包 1|Files Released]
+
+[Package|标准安装软件包 1|Missing Dependency Information]
+C:\Windows\SysWOW64\FM20.DLL=
+C:\Program Files (x86)\Common Files\microsoft shared\OFFICE14\MSO.DLL=
+C:\Program Files (x86)\Microsoft Office\Office14\EXCEL.EXE=
+
+[Package|标准安装软件包 1|Out-of-Date Dependency Information]
+
+[Package|标准安装软件包 1|Files Added]
+
+[Package|标准安装软件包 1|Files Removed]
+
+[Package|标准安装软件包 1|Files In Project]
+C:\demo\IssuelistTool\output\ztool.exe=Yes
+C:\Windows\System32\msvbvm60.dll=Yes
+C:\Windows\System32\oleaut32.dll=Yes
+C:\Windows\System32\olepro32.dll=Yes
+C:\Windows\System32\asycfilt.dll=Yes
+C:\Windows\System32\stdole2.tlb=Yes
+C:\Program Files (x86)\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\COMCAT.DLL=Yes
+C:\Windows\System32\VB6CHS.DLL=Yes
+C:\Program Files (x86)\Microsoft Office\Office14\EXCEL.EXE=Yes
+C:\Program Files (x86)\Common Files\microsoft shared\OFFICE14\MSO.DLL=Yes
+C:\Windows\SysWOW64\FM20.DLL=Yes
+C:\Program Files (x86)\Microsoft Visual Studio\VB98\Wizards\PDWizard\SETUP.EXE=Yes
+C:\Program Files (x86)\Microsoft Visual Studio\VB98\Wizards\PDWizard\SETUP1.EXE=Yes
+C:\Windows\System32\VB6STKIT.DLL=Yes
+C:\Program Files (x86)\Microsoft Visual Studio\VB98\Wizards\PDWizard\ST6UNST.EXE=Yes
+
+[Package|标准安装软件包 1|Configure Registry Files]
+Applicable=No
+
+[Package|标准安装软件包 1|Configure Remote Servers]
+Applicable=No
+
+[Package|标准安装软件包 1|Install Locations]
+C:\demo\IssuelistTool\output\ztool.exe=$(AppPath)
+C:\Windows\System32\msvbvm60.dll=$(WinSysPathSysFile)
+C:\Windows\System32\oleaut32.dll=$(WinSysPathSysFile)
+C:\Windows\System32\olepro32.dll=$(WinSysPathSysFile)
+C:\Windows\System32\asycfilt.dll=$(WinSysPathSysFile)
+C:\Windows\System32\stdole2.tlb=$(WinSysPathSysFile)
+C:\Program Files (x86)\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\COMCAT.DLL=$(WinSysPathSysFile)
+C:\Windows\System32\VB6CHS.DLL=$(WinSysPath)
+C:\Program Files (x86)\Microsoft Office\Office14\EXCEL.EXE=$(AppPath)
+C:\Program Files (x86)\Common Files\microsoft shared\OFFICE14\MSO.DLL=$(WinSysPath)
+C:\Windows\SysWOW64\FM20.DLL=$(WinSysPath)
+C:\Program Files (x86)\Microsoft Visual Studio\VB98\Wizards\PDWizard\SETUP.EXE=$(AppPath)
+C:\Program Files (x86)\Microsoft Visual Studio\VB98\Wizards\PDWizard\SETUP1.EXE=$(WinPath)
+C:\Windows\System32\VB6STKIT.DLL=$(WinSysPathSysFile)
+C:\Program Files (x86)\Microsoft Visual Studio\VB98\Wizards\PDWizard\ST6UNST.EXE=$(WinPath)
+
+[Package|标准安装软件包 1|Configure Shared Files]
+Applicable=Yes
+C:\demo\IssuelistTool\output\ztool.exe=No
+C:\Program Files (x86)\Microsoft Office\Office14\EXCEL.EXE=No
+
+[Package|标准安装软件包 1|Distribution]
+Type=single
+Size=
+Title=ztool
+
+[Package|标准安装软件包 1|IconGroups]
+Group0=ztool
+PrivateGroup0=True
+Parent0=$(Programs)
+
+[Package|标准安装软件包 1|ztool]
+Icon1=ztool.exe
+Title1=ztool
+StartIn1=$(AppPath)
+Key1=Icon1
+
+[Package|标准安装软件包 1|Package]
+PackageFolder=C:\demo\IssuelistTool\output
+ProjectFolder=C:\demo\IssuelistTool
+ServerSideCab=
+File1=C:\demo\IssuelistTool\output\setup.exe
+File2=C:\demo\IssuelistTool\output\Setup.Lst
+File3=C:\demo\IssuelistTool\output\ztool.CAB
+Handler1=PDWizard.FolderDplySubWiz
+Handler2=PDWizard.WebPostDplySubWiz
+
+
+[Package|展开文件 2|Root]
+SubWizProgID=PDWizard.DepPkgSubWiz
+BuildFolder=C:\demo\IssuelistTool\output
+
+[Package|展开文件 2|Configure DAO ISAMs]
+Applicable=No
+
+[Package|展开文件 2|Configure DAO ODBC]
+JetWorkspace=
+ODBCDirect=
+
+[Package|展开文件 2|Files Found]
+
+[Package|展开文件 2|Files Released]
+
+[Package|展开文件 2|Missing Dependency Information]
+C:\Windows\SysWOW64\FM20.DLL=
+C:\Program Files (x86)\Common Files\microsoft shared\OFFICE14\MSO.DLL=
+C:\Program Files (x86)\Microsoft Office\Office14\EXCEL.EXE=
+
+[Package|展开文件 2|Out-of-Date Dependency Information]
+
+[Package|展开文件 2|Files Added]
+
+[Package|展开文件 2|Files Removed]
+
+[Package|展开文件 2|Files In Project]
+C:\demo\IssuelistTool\output\ztool.exe=Yes
+C:\Windows\System32\msvbvm60.dll=Yes
+C:\Windows\System32\oleaut32.dll=Yes
+C:\Windows\System32\olepro32.dll=Yes
+C:\Windows\System32\asycfilt.dll=Yes
+C:\Windows\System32\stdole2.tlb=Yes
+C:\Program Files (x86)\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\COMCAT.DLL=Yes
+C:\Windows\System32\VB6CHS.DLL=Yes
+C:\Program Files (x86)\Microsoft Office\Office14\EXCEL.EXE=Yes
+C:\Program Files (x86)\Common Files\microsoft shared\OFFICE14\MSO.DLL=Yes
+C:\Windows\SysWOW64\FM20.DLL=Yes
+
+[Package|展开文件 2|Configure Registry Files]
+Applicable=No
+
+[Package|展开文件 2|Configure Remote Servers]
+Applicable=No
+
+[Package|展开文件 2|Install Locations]
+C:\demo\IssuelistTool\output\ztool.exe=$(AppPath)
+C:\Windows\System32\msvbvm60.dll=$(WinSysPathSysFile)
+C:\Windows\System32\oleaut32.dll=$(WinSysPathSysFile)
+C:\Windows\System32\olepro32.dll=$(WinSysPathSysFile)
+C:\Windows\System32\asycfilt.dll=$(WinSysPathSysFile)
+C:\Windows\System32\stdole2.tlb=$(WinSysPathSysFile)
+C:\Program Files (x86)\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\COMCAT.DLL=$(WinSysPathSysFile)
+C:\Windows\System32\VB6CHS.DLL=$(WinSysPath)
+C:\Program Files (x86)\Microsoft Office\Office14\EXCEL.EXE=$(AppPath)
+C:\Program Files (x86)\Common Files\microsoft shared\OFFICE14\MSO.DLL=$(WinSysPath)
+C:\Windows\SysWOW64\FM20.DLL=$(WinSysPath)
+C:\Program Files (x86)\Microsoft Visual Studio\VB98\Wizards\PDWizard\SETUP.EXE=$(AppPath)
+C:\Program Files (x86)\Microsoft Visual Studio\VB98\Wizards\PDWizard\SETUP1.EXE=$(WinPath)
+C:\Windows\System32\VB6STKIT.DLL=$(WinSysPathSysFile)
+C:\Program Files (x86)\Microsoft Visual Studio\VB98\Wizards\PDWizard\ST6UNST.EXE=$(WinPath)
+
+[Package|展开文件 2|Configure Shared Files]
+Applicable=Yes
+C:\demo\IssuelistTool\output\ztool.exe=No
+C:\Program Files (x86)\Microsoft Office\Office14\EXCEL.EXE=No
+
+[Package|展开文件 2|Distribution]
+Type=single
+Size=
+Title=ztool
+
+[Package|展开文件 2|IconGroups]
+Group0=ztool
+PrivateGroup0=True
+Parent0=$(Programs)
+
+[Package|展开文件 2|ztool]
+Icon1=ztool.exe
+Title1=ztool
+StartIn1=$(AppPath)
+Key1=Icon1
+
+[Package|展开文件 2|DepFile]
+DepCabFile=ztool.CAB
+DepCabRun=ztool.INF
+
+[Package|展开文件 2|Package]
+PackageFolder=C:\demo\IssuelistTool\output
+ProjectFolder=C:\demo\IssuelistTool
+ServerSideCab=
+File1=C:\demo\IssuelistTool\output\ztool.DEP
+Handler1=PDWizard.FolderDplySubWiz
+Handler2=PDWizard.WebPostDplySubWiz

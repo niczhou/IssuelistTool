@@ -389,7 +389,7 @@ Begin VB.Form Form1
       Begin VB.OptionButton Option7 
          Caption         =   "更新清单"
          Height          =   375
-         Left            =   2520
+         Left            =   240
          TabIndex        =   19
          Top             =   360
          Width           =   1215
@@ -397,15 +397,15 @@ Begin VB.Form Form1
       Begin VB.OptionButton Option6 
          Caption         =   "导入清单"
          Height          =   375
-         Left            =   1320
+         Left            =   2760
          TabIndex        =   18
          Top             =   360
-         Width           =   1455
+         Width           =   1095
       End
       Begin VB.OptionButton Option5 
          Caption         =   "创建问题"
          Height          =   375
-         Left            =   120
+         Left            =   1560
          TabIndex        =   17
          Top             =   360
          Width           =   1335
@@ -414,7 +414,7 @@ Begin VB.Form Form1
          Caption         =   "批量输入"
          Height          =   375
          Index           =   0
-         Left            =   5040
+         Left            =   5520
          TabIndex        =   2
          Top             =   360
          Width           =   1335
@@ -423,7 +423,7 @@ Begin VB.Form Form1
          Caption         =   "批量删除"
          Height          =   375
          Index           =   1
-         Left            =   3720
+         Left            =   4080
          TabIndex        =   1
          Top             =   360
          Width           =   1215
@@ -608,6 +608,9 @@ Private Sub Form_Load()
     Me.Height = 6266
     Me.Width = 7515
 End Sub
+Private Sub Form_Terminate()
+    Set xlApp = Nothing
+End Sub
 Private Sub Command1_Click()
     handleTask (btnID)
 End Sub
@@ -671,6 +674,7 @@ Private Sub initTask(taskName As Variant)
     End Select
     
     Set mUtil = Nothing
+
 End Sub
 Private Sub toggleFrame(showIndex As Variant)
     Dim f As Frame
@@ -678,7 +682,7 @@ Private Sub toggleFrame(showIndex As Variant)
         f.Visible = False
     Next
     If showIndex = -1 Then
-'        MsgBox "程序已经过期"
+'        MsgBox "outdated"
     Else
         Frame2(showIndex).Visible = True
         Frame2(showIndex).Top = 1080
@@ -705,8 +709,8 @@ Private Sub handleTask(strID As Variant)
             
     End Select
     
-    Me.Show 0
     Set mUtil = Nothing
+'    Set xlApp = Nothing
 End Sub
 Private Sub handleCreate()
     Dim mUtil As New XlUtil
