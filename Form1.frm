@@ -13,9 +13,9 @@ Begin VB.Form Form1
       Caption         =   "导入清单"
       Height          =   3675
       Index           =   2
-      Left            =   120
+      Left            =   3960
       TabIndex        =   24
-      Top             =   1080
+      Top             =   6240
       Width           =   7080
       Begin VB.Frame Frame12 
          Caption         =   "导入的范围"
@@ -151,9 +151,9 @@ Begin VB.Form Form1
       Caption         =   "批量输入"
       Height          =   3675
       Index           =   4
-      Left            =   4560
+      Left            =   2160
       TabIndex        =   52
-      Top             =   3960
+      Top             =   6840
       Width           =   7080
       Begin VB.Frame Frame16 
          Caption         =   "选择输入内容"
@@ -265,9 +265,9 @@ Begin VB.Form Form1
       Caption         =   "创建问题"
       Height          =   3675
       Index           =   0
-      Left            =   960
+      Left            =   3000
       TabIndex        =   3
-      Top             =   1320
+      Top             =   6480
       Width           =   7080
       Begin VB.Frame Frame17 
          Caption         =   "输入新问题数量"
@@ -433,9 +433,9 @@ Begin VB.Form Form1
       Caption         =   "批量删除"
       Height          =   3555
       Index           =   3
-      Left            =   1200
+      Left            =   1080
       TabIndex        =   41
-      Top             =   5640
+      Top             =   7080
       Width           =   7080
       Begin VB.Frame Frame14 
          Caption         =   "选择文件"
@@ -523,9 +523,9 @@ Begin VB.Form Form1
       Caption         =   "更新清单"
       Height          =   3675
       Index           =   1
-      Left            =   480
+      Left            =   120
       TabIndex        =   11
-      Top             =   5880
+      Top             =   7320
       Width           =   7080
       Begin VB.Frame Frame6 
          Caption         =   "选择更新内容"

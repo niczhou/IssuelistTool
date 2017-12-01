@@ -1,0 +1,79 @@
+[Root]
+Most Recent Package=展开文件 1
+Most Recent Deploy=展开文件夹 1
+
+
+[Package|展开文件 1|Root]
+SubWizProgID=PDWizard.DepPkgSubWiz
+BuildFolder=C:\demo\IssuelistTool\output\et22
+
+[Package|展开文件 1|Configure DAO ISAMs]
+Applicable=No
+
+[Package|展开文件 1|Configure DAO ODBC]
+JetWorkspace=
+ODBCDirect=
+
+[Package|展开文件 1|Files Found]
+
+[Package|展开文件 1|Files Released]
+
+[Package|展开文件 1|Missing Dependency Information]
+
+[Package|展开文件 1|Out-of-Date Dependency Information]
+
+[Package|展开文件 1|Files Added]
+
+[Package|展开文件 1|Files Removed]
+
+[Package|展开文件 1|Files In Project]
+C:\demo\IssuelistTool\output\ztool.exe=Yes
+C:\Windows\System32\msvbvm60.dll=Yes
+C:\Windows\System32\oleaut32.dll=Yes
+C:\Windows\System32\olepro32.dll=Yes
+C:\Windows\System32\asycfilt.dll=Yes
+C:\Windows\System32\stdole2.tlb=Yes
+C:\Program Files (x86)\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\COMCAT.DLL=Yes
+C:\Windows\System32\VB6CHS.DLL=Yes
+C:\Program Files (x86)\Microsoft Office\Office14\EXCEL.EXE=Yes
+C:\Program Files (x86)\Common Files\microsoft shared\OFFICE14\MSO.DLL=Yes
+C:\Windows\SysWOW64\FM20.DLL=Yes
+
+[Package|展开文件 1|Configure Registry Files]
+Applicable=
+
+[Package|展开文件 1|Configure Remote Servers]
+Applicable=
+
+[Package|展开文件 1|Install Locations]
+C:\demo\IssuelistTool\output\ztool.exe=$(AppPath)
+C:\Windows\System32\msvbvm60.dll=$(WinSysPathSysFile)
+C:\Windows\System32\oleaut32.dll=$(WinSysPathSysFile)
+C:\Windows\System32\olepro32.dll=$(WinSysPathSysFile)
+C:\Windows\System32\asycfilt.dll=$(WinSysPathSysFile)
+C:\Windows\System32\stdole2.tlb=$(WinSysPathSysFile)
+C:\Program Files (x86)\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\COMCAT.DLL=$(WinSysPathSysFile)
+C:\Windows\System32\VB6CHS.DLL=$(WinSysPath)
+C:\Program Files (x86)\Microsoft Office\Office14\EXCEL.EXE=$(AppPath)
+C:\Program Files (x86)\Common Files\microsoft shared\OFFICE14\MSO.DLL=$(WinSysPath)
+C:\Windows\SysWOW64\FM20.DLL=$(WinSysPath)
+
+[Package|展开文件 1|Configure Shared Files]
+Applicable=
+
+[Package|展开文件 1|DepFile]
+DepCabFile=ztool.CAB
+DepCabRun=ztool.INF
+
+[Package|展开文件 1|Package]
+PackageFolder=C:\demo\IssuelistTool\output\et22
+ProjectFolder=C:\demo\IssuelistTool
+ServerSideCab=
+File1=C:\demo\IssuelistTool\output\et22\ztool.DEP
+Handler1=PDWizard.FolderDplySubWiz
+Handler2=PDWizard.WebPostDplySubWiz
+
+[Deploy|展开文件夹 1|Root]
+Package=展开文件 1
+Handler=PDWizard.FolderDplySubWiz
+Folder=C:\demo\IssuelistTool\output\et23
